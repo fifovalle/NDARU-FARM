@@ -2,16 +2,12 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook, FaEye, FaEyeSlash } from "react-icons/fa";
 
-export default function lupaSandi() {
-  const vektor1 = require("@/assets/image/vektor1.png");
+export default function LupaSandi() {
+  const vektor2 = require("@/assets/image/vektor2.png");
   const pengarah = useRouter();
 
-  const [namaPengguna, setNamaPengguna] = useState(false);
-  const [kataSandi, setKataSandi] = useState(false);
-  const [lihatKataSandi, setLihatKataSandi] = useState(false);
+  const [email, setEmail] = useState(false);
 
   return (
     <section className="flex justify-center items-center min-h-screen bg-[#0A0A0A] px-4 font-poppins">
@@ -22,88 +18,51 @@ export default function lupaSandi() {
               Ndaru Farm
             </h1>
             <h2 className="text-lg sm:text-xl font-semibold text-gray-300 mb-2 sm:mb-4">
-              Selamat Datang, Nama Admin!
+              Lupa Kata Sandi?
             </h2>
             <p className="text-xs sm:text-sm text-gray-400 font-medium mb-6 sm:mb-10">
-              Lanjutkan dengan Google, Facebook, atau masukkan identitas Anda.
+              Masukkan alamat email Anda untuk mendapatkan tautan reset kata
+              sandi.
             </p>
-            <div className="grid grid-cols-2 gap-2 sm:gap-4 mb-6 sm:mb-8">
-              <button className="border border-green-400 flex items-center justify-center rounded-lg p-2 sm:p-3 font-semibold transition duration-300 hover:bg-green-400 hover:text-black shadow-lg">
-                <FcGoogle className="mr-2 text-xl" />
-                Google
-              </button>
-              <button className="border border-green-400 flex items-center justify-center rounded-lg p-2 sm:p-3 font-semibold transition duration-300 hover:bg-green-400 hover:text-black shadow-lg">
-                <FaFacebook className="mr-2 text-xl" />
-                Facebook
-              </button>
-            </div>
             <form className="space-y-4">
               <div className="relative">
                 <input
-                  onFocus={() => setNamaPengguna(true)}
-                  onBlur={(e) => setNamaPengguna(e.target.value !== "")}
+                  onFocus={() => setEmail(true)}
+                  type="email"
                   className={`border border-gray-500 bg-transparent text-white rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 ${
-                    namaPengguna ? "pt-6" : "pt-3"
+                    email ? "pt-6" : "pt-3"
                   }`}
+                  required
                 />
                 <label
                   className={`absolute left-3 transition-all text-gray-400 pointer-events-none ${
-                    namaPengguna
-                      ? "top-1 text-xs text-green-400"
-                      : "top-3 text-base"
+                    email ? "top-1 text-xs text-green-400" : "top-3 text-base"
                   }`}
                 >
-                  Masukan Nama Pengguna
+                  Masukkan Alamat Email
                 </label>
-              </div>
-
-              <div className="relative">
-                <input
-                  onFocus={() => setKataSandi(true)}
-                  onBlur={(e) => setKataSandi(e.target.value !== "")}
-                  type={lihatKataSandi ? "text" : "password"}
-                  className={`border border-gray-500 bg-transparent text-white rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 ${
-                    kataSandi ? "pt-6" : "pt-3"
-                  }`}
-                />
-                <label
-                  className={`absolute left-3 transition-all text-gray-400 pointer-events-none ${
-                    kataSandi
-                      ? "top-1 text-xs text-green-400"
-                      : "top-3 text-base"
-                  }`}
-                >
-                  Masukan Kata Sandi
-                </label>
-                <button
-                  type="button"
-                  className="absolute right-3 top-4 text-gray-400"
-                  onClick={() => setLihatKataSandi(!lihatKataSandi)}
-                >
-                  {lihatKataSandi ? <FaEyeSlash /> : <FaEye />}
-                </button>
               </div>
 
               <button
                 type="submit"
                 className="bg-green-400 text-black rounded-lg p-3 w-full font-semibold transition duration-300 hover:bg-green-500 hover:shadow-2xl"
               >
-                Masuk
+                Kirim Tautan Reset
               </button>
             </form>
             <p
-              onClick={() => pengarah.push("/masuk")}
+              onClick={() => pengarah.push("/")}
               className="text-xs sm:text-sm text-gray-500 mt-4 text-center hover:text-green-400 transition duration-300 cursor-pointer"
             >
-              Lupa kata sandi?
+              Kembali ke halaman masuk
             </p>
           </div>
 
           <div className="relative hidden lg:block bg-gradient-to-br from-black via-green-900 to-green-400">
             <div className="absolute inset-0 bg-black bg-opacity-30 z-10"></div>
             <Image
-              src={vektor1}
-              alt="vektor1"
+              src={vektor2}
+              alt="vektor2"
               className="object-cover h-full w-full"
               priority={true}
             />
