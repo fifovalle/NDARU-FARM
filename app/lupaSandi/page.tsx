@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook, FaEye, FaEyeSlash } from "react-icons/fa";
 
-export default function Masuk() {
+export default function lupaSandi() {
   const vektor1 = require("@/assets/image/vektor1.png");
   const pengarah = useRouter();
 
@@ -92,7 +92,7 @@ export default function Masuk() {
               </button>
             </form>
             <p
-              onClick={() => pengarah.push("/lupaSandi")}
+              onClick={() => pengarah.push("/masuk")}
               className="text-xs sm:text-sm text-gray-500 mt-4 text-center hover:text-green-400 transition duration-300 cursor-pointer"
             >
               Lupa kata sandi?
