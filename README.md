@@ -10,6 +10,7 @@ Jelajahi karya terbaru dan keterampilan saya dalam dunia pengembangan aplikasi m
 ### 🚀 Fitur Utama
 
 - **User Interface:** Halaman Login
+- **User Interface:** Halaman Lupa Kata Sandi
 
 ## 🛠️ Teknologi yang Digunakan
 
