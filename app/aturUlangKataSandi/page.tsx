@@ -5,13 +5,14 @@ import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook, FaEye, FaEyeSlash } from "react-icons/fa";
 
-export default function Index() {
-  const vektor1 = require("@/assets/image/vektor1.png");
+export default function AturUlangKataSandi() {
+  const vektor3 = require("@/assets/image/vektor3.png");
   const pengarah = useRouter();
 
-  const [namaPengguna, setNamaPengguna] = useState(false);
   const [kataSandi, setKataSandi] = useState(false);
+  const [konfirmasiKataSandi, setKonfirmasiKataSandi] = useState(false);
   const [lihatKataSandi, setLihatKataSandi] = useState(false);
+  const [lihatKofirmasiKataSandi, setLihatKofirmasiKataSandi] = useState(false);
 
   return (
     <section className="flex justify-center items-center min-h-screen bg-[#0A0A0A] px-4 font-poppins">
@@ -22,41 +23,12 @@ export default function Index() {
               Ndaru Farm
             </h1>
             <h2 className="text-lg sm:text-xl font-semibold text-gray-300 mb-2 sm:mb-4">
-              Selamat Datang, Nama Admin!
+              Atur Ulang Kata Sandi
             </h2>
             <p className="text-xs sm:text-sm text-gray-400 font-medium mb-6 sm:mb-10">
-              Lanjutkan dengan Google, Facebook, atau masukkan identitas Anda.
+              Silahkan untuk memasukan kata sandi baru anda.
             </p>
-            <div className="grid grid-cols-2 gap-2 sm:gap-4 mb-6 sm:mb-8">
-              <button className="border border-green-400 flex items-center justify-center rounded-lg p-2 sm:p-3 font-semibold transition duration-300 hover:bg-green-400 hover:text-black shadow-lg">
-                <FcGoogle className="mr-2 text-xl" />
-                Google
-              </button>
-              <button className="border border-green-400 flex items-center justify-center rounded-lg p-2 sm:p-3 font-semibold transition duration-300 hover:bg-green-400 hover:text-black shadow-lg">
-                <FaFacebook className="mr-2 text-xl" />
-                Facebook
-              </button>
-            </div>
             <form className="space-y-4">
-              <div className="relative">
-                <input
-                  onFocus={() => setNamaPengguna(true)}
-                  onBlur={(e) => setNamaPengguna(e.target.value !== "")}
-                  className={`border border-gray-500 bg-transparent text-white rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 ${
-                    namaPengguna ? "pt-6" : "pt-3"
-                  }`}
-                />
-                <label
-                  className={`absolute left-3 transition-all text-gray-400 pointer-events-none ${
-                    namaPengguna
-                      ? "top-1 text-xs text-green-400"
-                      : "top-3 text-base"
-                  }`}
-                >
-                  Masukan Nama Pengguna
-                </label>
-              </div>
-
               <div className="relative">
                 <input
                   onFocus={() => setKataSandi(true)}
@@ -84,26 +56,49 @@ export default function Index() {
                 </button>
               </div>
 
+              <div className="relative">
+                <input
+                  onFocus={() => setKonfirmasiKataSandi(true)}
+                  onBlur={(e) => setKonfirmasiKataSandi(e.target.value !== "")}
+                  type={lihatKofirmasiKataSandi ? "text" : "password"}
+                  className={`border border-gray-500 bg-transparent text-white rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 ${
+                    konfirmasiKataSandi ? "pt-6" : "pt-3"
+                  }`}
+                />
+                <label
+                  className={`absolute left-3 transition-all text-gray-400 pointer-events-none ${
+                    konfirmasiKataSandi
+                      ? "top-1 text-xs text-green-400"
+                      : "top-3 text-base"
+                  }`}
+                >
+                  Masukan Konfirmasi Kata Sandi
+                </label>
+                <button
+                  type="button"
+                  className="absolute right-3 top-4 text-gray-400"
+                  onClick={() =>
+                    setLihatKofirmasiKataSandi(!lihatKofirmasiKataSandi)
+                  }
+                >
+                  {lihatKofirmasiKataSandi ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+
               <button
                 type="submit"
                 className="bg-green-400 text-black rounded-lg p-3 w-full font-semibold transition duration-300 hover:bg-green-500 hover:shadow-2xl"
               >
-                Masuk
+                Ubah Kata Sandi
               </button>
             </form>
-            <p
-              onClick={() => pengarah.push("/lupaSandi")}
-              className="text-xs sm:text-sm text-gray-500 mt-4 text-center hover:text-green-400 transition duration-300 cursor-pointer"
-            >
-              Lupa kata sandi?
-            </p>
           </div>
 
           <div className="relative hidden lg:block bg-gradient-to-br from-black via-green-900 to-green-400">
             <div className="absolute inset-0 bg-black bg-opacity-30 z-10"></div>
             <Image
-              src={vektor1}
-              alt="vektor1"
+              src={vektor3}
+              alt="vektor3"
               className="object-cover h-full w-full"
               priority={true}
             />
