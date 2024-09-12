@@ -34,15 +34,15 @@ Kontribusi dan umpan balik dari komunitas sangat dihargai. Jika Anda ingin berko
 1. Clone repositori ini ke direktori web server Anda.
 
    ```
-   git clone https://github.com/fifovalle/KENDALI-CERDAS.git
+   git clone https://github.com/fifovalle/NDARU-FARM.git
 
    ```
 
 2. Jalankan aplikasi menggunakan Expo.
 
    ```
-   cd KENDALI-CERDAS
-   npx expo start
+   cd NDARU-FARM
+   npm run dev
    ```
 
 Terima kasih atas antusiasme Anda menantikan kehadiran user interface ini! 🙌
