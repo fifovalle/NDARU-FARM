@@ -11,6 +11,7 @@ Jelajahi karya terbaru dan keterampilan saya dalam dunia pengembangan aplikasi m
 
 - **User Interface:** Halaman Login
 - **User Interface:** Halaman Lupa Kata Sandi
+- **User Interface:** Halaman Atur Ulang Kata Sandi
 
 ## 🛠️ Teknologi yang Digunakan
 
