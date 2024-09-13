@@ -22,7 +22,7 @@ export default function DataAdmin() {
       )}
       <Sidebar className="hidden md:block" />
 
-      <main className="flex-1 p-2 bg-gradient-to-l from-[#121212] to-[#0a0a0a] m-2 md:m-5 rounded-xl">
+      <main className="flex-1 p-4 bg-gradient-to-l from-[#121212] to-[#0a0a0a] m-2 md:m-5 rounded-xl">
         <Navbar gambar={gambar} toggleSidebar={toggleSidebar} />
         <RemahRoti />
         <DaftarMenu />
