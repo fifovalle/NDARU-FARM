@@ -8,7 +8,7 @@ import {
 import { HomeIcon, UserGroupIcon } from "@heroicons/react/24/solid";
 import { FaDatabase } from "react-icons/fa";
 
-const SidebarSemua = ({ className }) => {
+const Sidebar = ({ className }) => {
   return (
     <aside
       className={`${className} w-64 bg-[#0a0a0a] text-white h-screen fixed md:relative z-50 md:z-0`}
@@ -75,4 +75,4 @@ const SidebarSemua = ({ className }) => {
   );
 };
 
-export default SidebarSemua;
+export default Sidebar;

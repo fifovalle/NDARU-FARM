@@ -25,7 +25,7 @@ import ModalTambahSayuran from "@/components/modalTambahSayuran";
 import ModalTambahJasa from "@/components/modalTambahJasa";
 import ModalTambahBerita from "@/components/modalTambahBerita";
 
-const NavbarSemua = ({ gambar, toggleSidebar }) => {
+const Napbar = ({ gambar, toggleSidebar }) => {
   const [terbukaModalTambahAdmin, setTerbukaModalTambahAdmin] = useState(false);
   const [terbukaModalTambahPengguna, setTerbukaModalTambahPengguna] =
     useState(false);
@@ -179,4 +179,4 @@ const NavbarSemua = ({ gambar, toggleSidebar }) => {
   );
 };
 
-export default NavbarSemua;
+export default Napbar;

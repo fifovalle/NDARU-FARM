@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
+import { Typography } from "@material-tailwind/react";
 // KOMPONEN KAMI
 import Sidebar from "@/components/sidebar";
 import Navbar from "@/components/navbar";
 import Konten1 from "@/app/beranda/components/konten1";
+import FooterSemua from "@/components/footer";
 // HOOKS KAMI
 import { useSidebar } from "@/hooks/useSidebar";
 
@@ -23,6 +25,7 @@ export default function Beranda() {
       <main className="flex-1 p-2 bg-gradient-to-l from-[#121212] to-[#0a0a0a] m-2 md:m-5 rounded-xl">
         <Navbar gambar={gambar} toggleSidebar={toggleSidebar} />
         <Konten1 />
+        <FooterSemua />
       </main>
     </section>
   );
