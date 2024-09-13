@@ -95,7 +95,7 @@ const ModalTambahJasa = ({ terbuka, tanganiTutup }) => {
             <Select
               label="Pilih Jangka Waktu Jasa"
               labelProps={{ className: "text-white" }}
-              className="bg-[#1a1a1a] text-white flex-1"
+              className="text-white flex-1"
             >
               <Option value="1">1 Bulan</Option>
               <Option value="2">2 Bulan</Option>

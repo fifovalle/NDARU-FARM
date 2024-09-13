@@ -95,7 +95,7 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
             <Select
               label="Pilih Berat Sayuran"
               labelProps={{ className: "text-white" }}
-              className="bg-[#1a1a1a] text-white flex-1"
+              className="text-white flex-1"
             >
               <Option value="1">1 Kg</Option>
               <Option value="2">2 Kg</Option>
