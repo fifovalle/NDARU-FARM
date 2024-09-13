@@ -1,13 +1,10 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function AturUlangKataSandi() {
   const vektor3 = require("@/assets/image/vektor3.png");
-  const pengarah = useRouter();
 
   const [kataSandi, setKataSandi] = useState(false);
   const [konfirmasiKataSandi, setKonfirmasiKataSandi] = useState(false);

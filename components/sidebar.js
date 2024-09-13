@@ -6,6 +6,7 @@ import {
   ListItemPrefix,
 } from "@material-tailwind/react";
 import { HomeIcon, UserGroupIcon } from "@heroicons/react/24/solid";
+import { FaDatabase } from "react-icons/fa";
 
 const SidebarSemua = ({ className }) => {
   return (
@@ -31,6 +32,43 @@ const SidebarSemua = ({ className }) => {
             <UserGroupIcon className="h-5 w-5 text-white font-semibold" />
           </ListItemPrefix>
           <Typography className="text-white font-semibold">Admin</Typography>
+        </ListItem>
+
+        <ListItem className="bg-[#0a0a0a] hover:bg-[#1a1a1a] transition-colors duration-300 h-10">
+          <ListItemPrefix>
+            <UserGroupIcon className="h-5 w-5 text-white font-semibold" />
+          </ListItemPrefix>
+          <Typography className="text-white font-semibold">Pengguna</Typography>
+        </ListItem>
+
+        <ListItem className="bg-[#0a0a0a] hover:bg-[#1a1a1a] transition-colors duration-300 h-10">
+          <ListItemPrefix>
+            <FaDatabase className="h-5 w-5 text-white font-semibold" />
+          </ListItemPrefix>
+          <Typography className="text-white font-semibold">Sayuran</Typography>
+        </ListItem>
+
+        <ListItem className="bg-[#0a0a0a] hover:bg-[#1a1a1a] transition-colors duration-300 h-10">
+          <ListItemPrefix>
+            <FaDatabase className="h-5 w-5 text-white font-semibold" />
+          </ListItemPrefix>
+          <Typography className="text-white font-semibold">Jasa</Typography>
+        </ListItem>
+
+        <ListItem className="bg-[#0a0a0a] hover:bg-[#1a1a1a] transition-colors duration-300 h-10">
+          <ListItemPrefix>
+            <FaDatabase className="h-5 w-5 text-white font-semibold" />
+          </ListItemPrefix>
+          <Typography className="text-white font-semibold">Berita</Typography>
+        </ListItem>
+
+        <ListItem className="bg-[#0a0a0a] hover:bg-[#1a1a1a] transition-colors duration-300 h-10">
+          <ListItemPrefix>
+            <FaDatabase className="h-5 w-5 text-white font-semibold" />
+          </ListItemPrefix>
+          <Typography className="text-white font-semibold">
+            Produksi Pertanian
+          </Typography>
         </ListItem>
       </List>
     </aside>
