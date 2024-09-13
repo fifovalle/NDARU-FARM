@@ -23,6 +23,7 @@ import ModalTambahAdmin from "@/components/modalTambahAdmin";
 import ModalTambahPengguna from "@/components/modalTambahPengguna";
 import ModalTambahSayuran from "@/components/modalTambahSayuran";
 import ModalTambahJasa from "@/components/modalTambahJasa";
+import ModalTambahBerita from "@/components/modalTambahBerita";
 
 const NavbarBeranda = ({ gambar, toggleSidebar }) => {
   const [terbukaModalTambahAdmin, setTerbukaModalTambahAdmin] = useState(false);
@@ -30,15 +31,19 @@ const NavbarBeranda = ({ gambar, toggleSidebar }) => {
     useState(false);
   const [terbukaModalTambahSayuran, setTerbukaModalTambahSayuran] =
     useState(false);
-  const [terbukaModalTambaJasa, setTerbukaModalTambaJasa] = useState(false);
+  const [terbukaModalTambahJasa, setTerbukaModalTambahJasa] = useState(false);
+  const [terbukaModalTambahBerita, setTerbukaModalTambahBerita] =
+    useState(false);
   const tanganiTerbukaModalTambahAdmin = (status) =>
     setTerbukaModalTambahAdmin(status);
   const tanganiTerbukaModalTambahPengguna = (status) =>
     setTerbukaModalTambahPengguna(status);
   const tanganiTerbukaModalSayuran = (status) =>
     setTerbukaModalTambahSayuran(status);
-  const tanganiTerbukaModalTambaJasa = (status) =>
-    setTerbukaModalTambaJasa(status);
+  const tanganiTerbukaModalTambahJasa = (status) =>
+    setTerbukaModalTambahJasa(status);
+  const tanganiTerbukaModalTambahBerita = (status) =>
+    setTerbukaModalTambahBerita(status);
 
   return (
     <>
@@ -94,14 +99,17 @@ const NavbarBeranda = ({ gambar, toggleSidebar }) => {
               </MenuItem>
 
               <MenuItem
-                onClick={() => tanganiTerbukaModalTambaJasa(true)}
+                onClick={() => tanganiTerbukaModalTambahJasa(true)}
                 className="text-white flex items-center gap-2"
               >
                 <PlusIcon className="h-5 w-5" />
                 Tambah Jasa
               </MenuItem>
 
-              <MenuItem className="text-white flex items-center gap-2">
+              <MenuItem
+                onClick={() => tanganiTerbukaModalTambahBerita(true)}
+                className="text-white flex items-center gap-2"
+              >
                 <PlusIcon className="h-5 w-5" />
                 Tambah Berita
               </MenuItem>
@@ -159,8 +167,13 @@ const NavbarBeranda = ({ gambar, toggleSidebar }) => {
       />
 
       <ModalTambahJasa
-        terbuka={terbukaModalTambaJasa}
-        tanganiTutup={tanganiTerbukaModalTambaJasa}
+        terbuka={terbukaModalTambahJasa}
+        tanganiTutup={tanganiTerbukaModalTambahJasa}
+      />
+
+      <ModalTambahBerita
+        terbuka={terbukaModalTambahBerita}
+        tanganiTutup={tanganiTerbukaModalTambahBerita}
       />
     </>
   );
