@@ -5,6 +5,7 @@ import Sidebar from "@/components/sidebar";
 import Navbar from "@/components/navbar";
 import RemahRoti from "@/app/dataAdmin/components/remahRoti";
 import DaftarMenu from "@/app/dataAdmin/components/daftarMenu";
+import TabelAdmin from "./components/tabelAdmin";
 import FooterSemua from "@/components/footer";
 // HOOKS KAMI
 import { useSidebar } from "@/hooks/useSidebar";
@@ -26,6 +27,7 @@ export default function DataAdmin() {
         <Navbar gambar={gambar} toggleSidebar={toggleSidebar} />
         <RemahRoti />
         <DaftarMenu />
+        <TabelAdmin />
         <FooterSemua />
       </main>
     </section>
