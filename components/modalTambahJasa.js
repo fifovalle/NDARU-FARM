@@ -13,13 +13,13 @@ import {
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
-  const [gambarSayuran, setGambarSayuran] = useState(null);
+const ModalTambahJasa = ({ terbuka, tanganiTutup }) => {
+  const [gambarJasa, setGambarJasa] = useState(null);
 
-  const tanganiGambarSayuran = (event) => {
+  const tanganiGambarJasa = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setGambarSayuran(URL.createObjectURL(file));
+      setGambarJasa(URL.createObjectURL(file));
     }
   };
 
@@ -31,7 +31,7 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
         mount: { scale: 1, y: 0 },
         unmount: { scale: 0.9, y: -100 },
       }}
-      size="lg"
+      size="md"
       className="bg-[#121212] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-4"
     >
       <div className="absolute top-3 right-3">
@@ -44,13 +44,13 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
         </IconButton>
       </div>
 
-      <DialogHeader className="text-white">Tambah Sayuran Baru</DialogHeader>
+      <DialogHeader className="text-white">Tambah Jasa Baru</DialogHeader>
       <DialogBody divider>
         <form className="flex flex-col gap-4">
-          {gambarSayuran ? (
+          {gambarJasa ? (
             <div className="flex justify-center mb-4">
               <img
-                src={gambarSayuran}
+                src={gambarJasa}
                 alt="Pratinjau Gambar"
                 className="w-52 h-52 object-cover rounded-lg border border-gray-300"
               />
@@ -67,7 +67,7 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
             type="file"
             accept="image/*"
             id="unggah-gambar"
-            onChange={tanganiGambarSayuran}
+            onChange={tanganiGambarJasa}
             style={{ display: "none" }}
           />
 
@@ -75,46 +75,39 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
             htmlFor="unggah-gambar"
             className="flex items-center justify-center bg-[#1a1a1a] text-white p-3 rounded-lg cursor-pointer"
           >
-            <span className="mr-3">Pilih Gambar Sayuran</span>
+            <span className="mr-3">Pilih Gambar Jasa</span>
           </label>
 
           <Input
             color="white"
-            label="Nama Sayuran"
+            label="Nama Jasa"
             className="bg-[#1a1a1a] text-white"
           />
 
           <div className="flex flex-col md:flex-row gap-2">
             <Input
               color="white"
-              label="Harga Sayuran"
+              label="Harga Jasa"
               type="number"
               className="bg-[#1a1a1a] text-white flex-1"
             />
 
             <Select
-              label="Pilih Berat Sayuran"
+              label="Pilih Jangka Waktu Jasa"
               labelProps={{ className: "text-white" }}
               className="bg-[#1a1a1a] text-white flex-1"
             >
-              <Option value="1">1 Kg</Option>
-              <Option value="2">2 Kg</Option>
-              <Option value="3">3 Kg</Option>
-              <Option value="4">4 Kg</Option>
-              <Option value="5">5 Kg</Option>
+              <Option value="1">1 Bulan</Option>
+              <Option value="2">2 Bulan</Option>
+              <Option value="3">3 Bulan</Option>
+              <Option value="4">4 Bulan</Option>
+              <Option value="5">5 Bulan</Option>
             </Select>
-
-            <Input
-              color="white"
-              label="Stok Sayuran"
-              type="number"
-              className="bg-[#1a1a1a] text-white flex-1"
-            />
           </div>
 
           <Textarea
             color="white"
-            label="Deskripsi Sayuran"
+            label="Deskripsi Jasa"
             className="bg-[#1a1a1a] text-white"
           />
         </form>
@@ -125,11 +118,11 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
           color="dark"
           onClick={() => tanganiTutup(false)}
         >
-          Tambah Sayuran
+          Tambah Jasa
         </Button>
       </DialogFooter>
     </Dialog>
   );
 };
 
-export default ModalTambahSayuran;
+export default ModalTambahJasa;
