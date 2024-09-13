@@ -116,7 +116,7 @@ const ModalTambahPengguna = ({ terbuka, tanganiTutup }) => {
               />
             </div>
             <Select
-              label="Pilih Jenis Kelamin"
+              label="Pilih Jenis Kelamin Pengguna"
               labelProps={{ className: "text-white" }}
               className="text-white"
             >

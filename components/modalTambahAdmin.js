@@ -116,7 +116,7 @@ const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
               />
             </div>
             <Select
-              label="Pilih Jenis Kelamin"
+              label="Pilih Jenis Kelamin Admin"
               labelProps={{ className: "text-white" }}
               className="text-white"
             >

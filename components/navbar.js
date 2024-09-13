@@ -20,16 +20,21 @@ import {
 } from "@heroicons/react/24/solid";
 import { FaSignOutAlt } from "react-icons/fa";
 import ModalTambahAdmin from "@/components/modalTambahAdmin";
-import ModalTambahPengguna from "./modalTambahPengguna";
+import ModalTambahPengguna from "@/components/modalTambahPengguna";
+import ModalTambahSayuran from "@/components/modalTambahSayuran";
 
 const NavbarBeranda = ({ gambar, toggleSidebar }) => {
   const [terbukaModalTambahAdmin, setTerbukaModalTambahAdmin] = useState(false);
   const [terbukaModalTambahPengguna, setTerbukaModalTambahPengguna] =
     useState(false);
+  const [terbukaModalTambahSayuran, setTerbukaModalTambahSayuran] =
+    useState(false);
   const tanganiTerbukaModalTambahAdmin = (status) =>
     setTerbukaModalTambahAdmin(status);
   const tanganiTerbukaModalTambahPengguna = (status) =>
     setTerbukaModalTambahPengguna(status);
+  const tanganiTerbukaModalSayuran = (status) =>
+    setTerbukaModalTambahSayuran(status);
 
   return (
     <>
@@ -74,7 +79,10 @@ const NavbarBeranda = ({ gambar, toggleSidebar }) => {
                 <UserPlusIcon className="h-5 w-5" />
                 Tambah Pengguna
               </MenuItem>
-              <MenuItem className="text-white flex items-center gap-2">
+              <MenuItem
+                onClick={() => tanganiTerbukaModalSayuran(true)}
+                className="text-white flex items-center gap-2"
+              >
                 <PlusIcon className="h-5 w-5" />
                 Tambah Sayuran
               </MenuItem>
@@ -128,6 +136,11 @@ const NavbarBeranda = ({ gambar, toggleSidebar }) => {
       <ModalTambahPengguna
         terbuka={terbukaModalTambahPengguna}
         tanganiTutup={tanganiTerbukaModalTambahPengguna}
+      />
+
+      <ModalTambahSayuran
+        terbuka={terbukaModalTambahSayuran}
+        tanganiTutup={tanganiTerbukaModalSayuran}
       />
     </>
   );
