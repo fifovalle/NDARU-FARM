@@ -29,7 +29,7 @@ const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
         mount: { scale: 1, y: 0 },
         unmount: { scale: 0.9, y: -100 },
       }}
-      size="sm"
+      size="md"
       className="bg-[#121212] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
     >
       <div className="absolute top-3 right-3">

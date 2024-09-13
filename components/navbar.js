@@ -19,12 +19,17 @@ import {
   PlusIcon,
 } from "@heroicons/react/24/solid";
 import { FaSignOutAlt } from "react-icons/fa";
-import ModalTambahAdmin from "@/app/beranda/components/modalTambahAdmin";
+import ModalTambahAdmin from "@/components/modalTambahAdmin";
+import ModalTambahPengguna from "./modalTambahPengguna";
 
 const NavbarBeranda = ({ gambar, toggleSidebar }) => {
   const [terbukaModalTambahAdmin, setTerbukaModalTambahAdmin] = useState(false);
+  const [terbukaModalTambahPengguna, setTerbukaModalTambahPengguna] =
+    useState(false);
   const tanganiTerbukaModalTambahAdmin = (status) =>
     setTerbukaModalTambahAdmin(status);
+  const tanganiTerbukaModalTambahPengguna = (status) =>
+    setTerbukaModalTambahPengguna(status);
 
   return (
     <>
@@ -62,7 +67,10 @@ const NavbarBeranda = ({ gambar, toggleSidebar }) => {
                 <UserPlusIcon className="h-5 w-5" />
                 Tambah Admin
               </MenuItem>
-              <MenuItem className="text-white flex items-center gap-2">
+              <MenuItem
+                onClick={() => tanganiTerbukaModalTambahPengguna(true)}
+                className="text-white flex items-center gap-2"
+              >
                 <UserPlusIcon className="h-5 w-5" />
                 Tambah Pengguna
               </MenuItem>
@@ -115,6 +123,11 @@ const NavbarBeranda = ({ gambar, toggleSidebar }) => {
       <ModalTambahAdmin
         terbuka={terbukaModalTambahAdmin}
         tanganiTutup={tanganiTerbukaModalTambahAdmin}
+      />
+
+      <ModalTambahPengguna
+        terbuka={terbukaModalTambahPengguna}
+        tanganiTutup={tanganiTerbukaModalTambahPengguna}
       />
     </>
   );
