@@ -7,9 +7,9 @@ import {
 } from "@material-tailwind/react";
 import { HomeIcon, UserGroupIcon } from "@heroicons/react/24/solid";
 
-const SidebarBeranda = () => {
+const SidebarBeranda = ({ className }) => {
   return (
-    <aside className="w-64 bg-[#0a0a0a] text-white">
+    <aside className={`${className} w-64 bg-[#0a0a0a] text-white`}>
       <Typography variant="h4" className="mb-4 pt-7 px-4 text-white font-bold">
         NDARU FARM
       </Typography>

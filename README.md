@@ -1,6 +1,6 @@
 **Selamat Datang di "Ndaru Farm"! 🤖**
 
-Jelajahi karya terbaru dan keterampilan saya dalam dunia pengembangan aplikasi mobile. Dari aplikasi web hingga proyek mobile, temukan ragam proyek yang mencerminkan dedikasi saya dalam teknologi.
+Jelajahi karya terbaru dan keterampilan saya dalam dunia pengembangan aplikasi Web. Dari aplikasi web hingga proyek mobile, temukan ragam proyek yang mencerminkan dedikasi saya dalam teknologi.
 
 ### 🚧 Status Proyek
 
@@ -17,7 +17,7 @@ Jelajahi karya terbaru dan keterampilan saya dalam dunia pengembangan aplikasi m
 
 - **Bahasa Pemrograman:** JavaScript.
 - **Alat Pengembangan:** Visual Studio Code, Git, Next.js.
-- **Pengembangan Mobile:** React, Tailwind CSS.
+- **Pengembangan Website:** React, Tailwind CSS.
 
 ## 📷 Preview Halaman
 
@@ -40,7 +40,7 @@ Kontribusi dan umpan balik dari komunitas sangat dihargai. Jika Anda ingin berko
 
    ```
 
-2. Jalankan aplikasi menggunakan Expo.
+2. Jalankan aplikasi menggunakan visual studio code.
 
    ```
    cd NDARU-FARM
