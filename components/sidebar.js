@@ -7,9 +7,11 @@ import {
 } from "@material-tailwind/react";
 import { HomeIcon, UserGroupIcon } from "@heroicons/react/24/solid";
 
-const SidebarBeranda = ({ className }) => {
+const SidebarSemua = ({ className }) => {
   return (
-    <aside className={`${className} w-64 bg-[#0a0a0a] text-white`}>
+    <aside
+      className={`${className} w-64 bg-[#0a0a0a] text-white h-screen fixed md:relative z-50 md:z-0`}
+    >
       <Typography variant="h4" className="mb-4 pt-7 px-4 text-white font-bold">
         NDARU FARM
       </Typography>
@@ -35,4 +37,4 @@ const SidebarBeranda = ({ className }) => {
   );
 };
 
-export default SidebarBeranda;
+export default SidebarSemua;
