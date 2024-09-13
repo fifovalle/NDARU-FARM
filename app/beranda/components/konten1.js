@@ -4,7 +4,7 @@ import { FaBoxOpen } from "react-icons/fa";
 
 const Konten1 = () => {
   return (
-    <div className="flex flex-col md:flex-row items-start justify-between gap-4 mt-10 px-4">
+    <section className="flex flex-col md:flex-row items-start justify-between gap-4 mt-10 px-4">
       <div className="mb-6 w-96">
         <Typography variant="h3" className="text-white font-bold">
           Rp 200.000
@@ -50,7 +50,7 @@ const Konten1 = () => {
           </Typography>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -3,6 +3,8 @@ import React from "react";
 // KOMPONEN KAMI
 import Sidebar from "@/components/sidebar";
 import Navbar from "@/components/navbar";
+import RemahRoti from "@/app/dataAdmin/components/remahRoti";
+import DaftarMenu from "@/app/dataAdmin/components/daftarMenu";
 import FooterSemua from "@/components/footer";
 // HOOKS KAMI
 import { useSidebar } from "@/hooks/useSidebar";
@@ -22,7 +24,8 @@ export default function DataAdmin() {
 
       <main className="flex-1 p-2 bg-gradient-to-l from-[#121212] to-[#0a0a0a] m-2 md:m-5 rounded-xl">
         <Navbar gambar={gambar} toggleSidebar={toggleSidebar} />
-
+        <RemahRoti />
+        <DaftarMenu />
         <FooterSemua />
       </main>
     </section>
