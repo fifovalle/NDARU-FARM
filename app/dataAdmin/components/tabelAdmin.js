@@ -18,7 +18,7 @@ const kepala = [
 
 const isi = [
   {
-    nomorUrut: "1",
+    number: "1",
     nama: "Nama Pengguna Admin",
     jenisKelamin: "Pria",
     nomorPonsel: "+62 812 3456 7890",
@@ -28,12 +28,17 @@ const isi = [
 
 const TabelAdmin = () => {
   return (
-    <Card className="w-[1000px] mx-auto mt-10 bg-[#212121] rounded-lg">
-      <table className="w-full min-w-max table-auto text-left">
+    <Card className="mt-10 bg-gradient-to-l from-[#121212] to-[#0a0a0a] px-0 lg:px-10 md:px-10 sm:px-10">
+      <table className="w-full min-w-max bg-[#212121] rounded-lg table-auto text-left">
         <thead>
           <tr className="text-center">
-            {kepala.map((head) => (
-              <th key={head} className="p-4 pt-10">
+            {kepala.map((head, index) => (
+              <th
+                key={head}
+                className={`p-4 pt-10 ${
+                  index > 1 ? "hidden lg:table-cell" : ""
+                }`}
+              >
                 <Typography variant="small" color="white" className="font-bold">
                   {head}
                 </Typography>
@@ -43,16 +48,16 @@ const TabelAdmin = () => {
         </thead>
         <tbody>
           {isi.map(
-            ({ nomorUrut, nama, jenisKelamin, nomorPonsel, pembuatanAkun }) => {
+            ({ number, nama, jenisKelamin, nomorPonsel, pembuatanAkun }) => {
               return (
-                <tr key={nomorUrut} className="text-center">
+                <tr key={number} className="text-center">
                   <td className="p-4">
                     <Typography
                       variant="small"
                       color="white"
                       className="font-bold"
                     >
-                      {nomorUrut}
+                      {number}
                     </Typography>
                   </td>
                   <td className="p-4">
@@ -64,7 +69,7 @@ const TabelAdmin = () => {
                       {nama}
                     </Typography>
                   </td>
-                  <td className="p-4">
+                  <td className="p-4 hidden lg:table-cell">
                     <Typography
                       color="white"
                       variant="small"
@@ -73,7 +78,7 @@ const TabelAdmin = () => {
                       {jenisKelamin}
                     </Typography>
                   </td>
-                  <td className="p-4">
+                  <td className="p-4 hidden lg:table-cell">
                     <Typography
                       color="white"
                       variant="small"
@@ -82,7 +87,7 @@ const TabelAdmin = () => {
                       {nomorPonsel}
                     </Typography>
                   </td>
-                  <td className="p-4">
+                  <td className="p-4 hidden lg:table-cell">
                     <Typography
                       color="white"
                       variant="small"
@@ -91,7 +96,7 @@ const TabelAdmin = () => {
                       {pembuatanAkun}
                     </Typography>
                   </td>
-                  <td className="p-2">
+                  <td className="p-2 hidden lg:table-cell">
                     <Menu as="div" className="relative inline-block text-left">
                       <MenuButton>
                         <EllipsisVerticalIcon className="h-5 w-5 text-white" />
