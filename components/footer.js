@@ -4,8 +4,8 @@ import { Typography } from "@material-tailwind/react";
 import { getVersi } from "@/utils/getVersi";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  const version = getVersi();
+  const tahunSekarang = new Date().getFullYear();
+  const versi = getVersi();
 
   return (
     <footer className="w-full bg-gradient-to-l from-[#121212] to-[#0a0a0a] p-8">
@@ -14,7 +14,7 @@ const Footer = () => {
         color="blue-gray"
         className="text-center font-normal text-white"
       >
-        &copy; {currentYear} Bhineka Dev | {version}
+        &copy; {tahunSekarang} Bhineka Dev | {versi}
       </Typography>
     </footer>
   );
