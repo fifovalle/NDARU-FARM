@@ -15,7 +15,7 @@ Jelajahi karya terbaru dan keterampilan saya dalam dunia pengembangan aplikasi m
 
 ## 🛠️ Teknologi yang Digunakan
 
-- **Bahasa Pemrograman:** TypeScript.
+- **Bahasa Pemrograman:** JavaScript.
 - **Alat Pengembangan:** Visual Studio Code, Git, Next.js.
 - **Pengembangan Mobile:** React, Tailwind CSS.
 
