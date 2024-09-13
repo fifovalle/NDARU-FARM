@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import Sidebar from "@/app/beranda/components/sidebar";
-import Navbar from "@/app/beranda/components/navbar";
+import Sidebar from "@/components/sidebar";
+import Navbar from "@/components/navbar";
 import Konten1 from "@/app/beranda/components/konten1";
 
 export default function Beranda() {
