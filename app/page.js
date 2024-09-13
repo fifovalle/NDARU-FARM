@@ -28,11 +28,14 @@ export default function Index() {
               Lanjutkan dengan Google, Facebook, atau masukkan identitas Anda.
             </p>
             <div className="grid grid-cols-2 gap-2 sm:gap-4 mb-6 sm:mb-8">
-              <button className="border border-green-400 flex items-center justify-center rounded-lg p-2 sm:p-3 font-semibold transition duration-300 hover:bg-green-400 hover:text-white shadow-lg">
+              <button
+                onClick={() => pengarah.push("/beranda")}
+                className="border border-green-400 flex items-center justify-center rounded-lg p-2 sm:p-3 font-semibold transition duration-300 hover:bg-green-800 hover:text-white shadow-lg"
+              >
                 <FcGoogle className="mr-2 text-xl" />
                 Google
               </button>
-              <button className="border border-green-400 flex items-center justify-center rounded-lg p-2 sm:p-3 font-semibold transition duration-300 hover:bg-green-400 hover:text-white shadow-lg">
+              <button className="border border-green-400 flex items-center justify-center rounded-lg p-2 sm:p-3 font-semibold transition duration-300 hover:bg-green-800 hover:text-white shadow-lg">
                 <FaFacebook className="mr-2 text-xl" />
                 Facebook
               </button>
@@ -86,7 +89,7 @@ export default function Index() {
 
               <button
                 type="submit"
-                className="bg-green-400 text-white rounded-lg p-3 w-full font-semibold transition duration-300 hover:bg-green-500 hover:shadow-2xl"
+                className="bg-green-900 text-white rounded-lg p-3 w-full font-semibold transition duration-300 hover:bg-green-500 hover:shadow-2xl"
               >
                 Masuk
               </button>

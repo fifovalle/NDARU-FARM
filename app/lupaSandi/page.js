@@ -45,7 +45,7 @@ export default function LupaSandi() {
 
               <button
                 onClick={() => pengarah.push("/aturUlangKataSandi")}
-                className="bg-green-400 text-black rounded-lg p-3 w-full font-semibold transition duration-300 hover:bg-green-500 hover:shadow-2xl"
+                className="bg-green-900 text-white rounded-lg p-3 w-full font-semibold transition duration-300 hover:bg-green-500 hover:shadow-2xl"
               >
                 Kirim Tautan Reset
               </button>
