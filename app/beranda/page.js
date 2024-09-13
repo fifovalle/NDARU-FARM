@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { Typography } from "@material-tailwind/react";
 // KOMPONEN KAMI
 import Sidebar from "@/components/sidebar";
 import Navbar from "@/components/navbar";
