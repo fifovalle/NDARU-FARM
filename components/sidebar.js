@@ -6,7 +6,7 @@ import {
   ListItemPrefix,
 } from "@material-tailwind/react";
 import { HomeIcon, UserGroupIcon } from "@heroicons/react/24/solid";
-import { FaDatabase } from "react-icons/fa";
+import { FaBook, FaDatabase } from "react-icons/fa";
 import { useRouter, usePathname } from "next/navigation";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
@@ -61,6 +61,13 @@ const Sidebar = ({ className }) => {
         </ListItem>
       </List>
       <div className="border border-[#1a1a1a] my-2" />
+      <Typography
+        className={`${
+          mengecil ? "hidden" : "block"
+        } text-white font-semibold ml-4 text-sm mt-4 mb-2`}
+      >
+        Kumpulan Data
+      </Typography>
       <List>
         <ListItem
           onClick={() => pengarah.push("/dataAdmin")}
@@ -162,6 +169,33 @@ const Sidebar = ({ className }) => {
           {!mengecil && (
             <Typography className="text-white font-semibold">
               Sarana Pertanian
+            </Typography>
+          )}
+        </ListItem>
+      </List>
+      <div className="border border-[#1a1a1a]" />
+      <List>
+        <Typography
+          className={`${
+            mengecil ? "hidden" : "block"
+          } text-white font-semibold ml-4 text-sm mt-4 mb-2`}
+        >
+          Aktivitas
+        </Typography>
+        <ListItem
+          onClick={() => pengarah.push("/dataTransaksi")}
+          className={`${
+            apakahAktif("/dataTransaksi") ? "bg-[#212121]" : "bg-[#0a0a0a]"
+          } hover:bg-[#1a1a1a] transition-colors duration-300 h-10 ${
+            mengecil ? "w-12 justify-start" : "w-full"
+          } flex items-center`}
+        >
+          <ListItemPrefix>
+            <FaBook className="h-5 w-5 text-white font-semibold" />
+          </ListItemPrefix>
+          {!mengecil && (
+            <Typography className="text-white font-semibold">
+              Transaksi
             </Typography>
           )}
         </ListItem>
