@@ -54,7 +54,7 @@ const Napbar = ({ gambar, toggleSidebar }) => {
 
   return (
     <>
-      <Navbar className="bg-gradient-to-l from-[#121212] to-[#0a0a0a] shadow-none border-none rounded text-white flex items-center justify-between px-4 py-2">
+      <Navbar className="bg-gradient-to-l from-[#121212] to-[#0a0a0a] shadow-none border-none rounded mx-auto text-white flex items-center justify-between px-4 py-2">
         <div className="flex items-center gap-2">
           <IconButton
             variant="text"
