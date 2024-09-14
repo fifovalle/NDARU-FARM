@@ -7,16 +7,7 @@ import { Card, Typography } from "@material-tailwind/react";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
 import { FaDownload } from "react-icons/fa";
 
-const kepala = [
-  "Nomor",
-  "Nama",
-  "Jenis Kelamin",
-  "Nomor Ponsel",
-  "Pembuatan Akun",
-  "Aksi",
-];
-
-const isi = [
+const konten = [
   {
     number: "1",
     nama: "Nama Pengguna Admin",
@@ -32,26 +23,44 @@ const TabelAdmin = () => {
       <table className="w-full min-w-max bg-[#212121] rounded-lg table-auto text-left">
         <thead>
           <tr className="text-center">
-            {kepala.map((head, index) => (
-              <th
-                key={head}
-                className={`p-4 pt-10 ${
-                  index > 1 ? "hidden lg:table-cell" : ""
-                }`}
-              >
-                <Typography variant="small" color="white" className="font-bold">
-                  {head}
-                </Typography>
-              </th>
-            ))}
+            <th className="p-4 pt-10 hidden md:table-cell lg:table-cell xl:table-cell">
+              <Typography variant="small" color="white" className="font-bold">
+                Nomor
+              </Typography>
+            </th>
+            <th className="p-4 pt-10">
+              <Typography variant="small" color="white" className="font-bold">
+                Nama
+              </Typography>
+            </th>
+            <th className="p-4 pt-10 hidden xl:table-cell">
+              <Typography variant="small" color="white" className="font-bold">
+                Jenis Kelamin
+              </Typography>
+            </th>
+            <th className="p-4 pt-10 hidden xl:table-cell">
+              <Typography variant="small" color="white" className="font-bold">
+                Nomor Ponsel
+              </Typography>
+            </th>
+            <th className="p-4 pt-10 hidden lg:table-cell xl:table-cell">
+              <Typography variant="small" color="white" className="font-bold">
+                Pembuatan Akun
+              </Typography>
+            </th>
+            <th className="p-4 pt-10">
+              <Typography variant="small" color="white" className="font-bold">
+                Aksi
+              </Typography>
+            </th>
           </tr>
         </thead>
         <tbody>
-          {isi.map(
+          {konten.map(
             ({ number, nama, jenisKelamin, nomorPonsel, pembuatanAkun }) => {
               return (
                 <tr key={number} className="text-center">
-                  <td className="p-4">
+                  <td className="p-4 hidden md:table-cell lg:table-cell xl:table-cell">
                     <Typography
                       variant="small"
                       color="white"
@@ -69,7 +78,7 @@ const TabelAdmin = () => {
                       {nama}
                     </Typography>
                   </td>
-                  <td className="p-4 hidden lg:table-cell">
+                  <td className="p-4 hidden xl:table-cell">
                     <Typography
                       color="white"
                       variant="small"
@@ -78,7 +87,7 @@ const TabelAdmin = () => {
                       {jenisKelamin}
                     </Typography>
                   </td>
-                  <td className="p-4 hidden lg:table-cell">
+                  <td className="p-4 hidden xl:table-cell">
                     <Typography
                       color="white"
                       variant="small"
@@ -87,7 +96,7 @@ const TabelAdmin = () => {
                       {nomorPonsel}
                     </Typography>
                   </td>
-                  <td className="p-4 hidden lg:table-cell">
+                  <td className="p-4 hidden lg:table-cell xl:table-cell">
                     <Typography
                       color="white"
                       variant="small"
@@ -96,7 +105,7 @@ const TabelAdmin = () => {
                       {pembuatanAkun}
                     </Typography>
                   </td>
-                  <td className="p-2 hidden lg:table-cell">
+                  <td className="p-2">
                     <Menu as="div" className="relative inline-block text-left">
                       <MenuButton>
                         <EllipsisVerticalIcon className="h-5 w-5 text-white" />
