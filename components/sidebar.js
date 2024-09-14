@@ -99,9 +99,11 @@ const Sidebar = ({ className }) => {
         </ListItem>
 
         <ListItem
-          onClick={() => pengarah.push("/produksiPertanian")}
+          onClick={() => pengarah.push("/dataSaranaPertanian")}
           className={`${
-            apakahAktif("/produksiPertanian") ? "bg-[#212121]" : "bg-[#0a0a0a]"
+            apakahAktif("/dataSaranaPertanian")
+              ? "bg-[#212121]"
+              : "bg-[#0a0a0a]"
           } hover:bg-[#1a1a1a] transition-colors duration-300 h-10`}
         >
           <ListItemPrefix>
