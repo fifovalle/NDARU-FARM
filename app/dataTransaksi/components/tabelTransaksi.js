@@ -11,27 +11,6 @@ const konten = [
     tanggalPembelian: "24 Feb 2024",
     status: "Menunggu Konfirmasi",
   },
-  {
-    nomorUrut: "1",
-    namaPembeli: "Naufal FIFA",
-    total: "Rp 100.000",
-    tanggalPembelian: "24 Feb 2024",
-    status: "Menunggu Konfirmasi",
-  },
-  {
-    nomorUrut: "1",
-    namaPembeli: "Naufal FIFA",
-    total: "Rp 100.000",
-    tanggalPembelian: "24 Feb 2024",
-    status: "Menunggu Konfirmasi",
-  },
-  {
-    nomorUrut: "1",
-    namaPembeli: "Naufal FIFA",
-    total: "Rp 100.000",
-    tanggalPembelian: "24 Feb 2024",
-    status: "Menunggu Konfirmasi",
-  },
 ];
 
 const TabelTransaksi = () => {
