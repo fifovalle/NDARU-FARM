@@ -5,11 +5,10 @@ import {
 } from "@heroicons/react/24/solid";
 import { Card, Typography } from "@material-tailwind/react";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
-import { FaDownload } from "react-icons/fa";
 
 const konten = [
   {
-    number: "1",
+    nomorUrut: "1",
     nama: "Nama Pengguna Pengguna",
     jenisKelamin: "nama@gmail.com",
     nomorPonsel: "+62 812 3456 7890",
@@ -57,16 +56,16 @@ const TabelPengguna = () => {
         </thead>
         <tbody>
           {konten.map(
-            ({ number, nama, jenisKelamin, nomorPonsel, pembuatanAkun }) => {
+            ({ nomorUrut, nama, jenisKelamin, nomorPonsel, pembuatanAkun }) => {
               return (
-                <tr key={number} className="text-center">
+                <tr key={nomorUrut} className="text-center">
                   <td className="p-4 hidden md:table-cell lg:table-cell xl:table-cell">
                     <Typography
                       variant="small"
                       color="white"
                       className="font-bold"
                     >
-                      {number}
+                      {nomorUrut}
                     </Typography>
                   </td>
                   <td className="p-4">
@@ -133,18 +132,6 @@ const TabelPengguna = () => {
                               >
                                 <TrashIcon className="h-4 w-4 mr-2" />
                                 Hapus
-                              </button>
-                            )}
-                          </MenuItem>
-                          <MenuItem>
-                            {({ active }) => (
-                              <button
-                                className={`${
-                                  active ? "bg-gray-700" : ""
-                                } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
-                              >
-                                <FaDownload className="h-4 w-4 mr-2" />
-                                Unduh
                               </button>
                             )}
                           </MenuItem>
