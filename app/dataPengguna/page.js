@@ -3,10 +3,10 @@ import React, { useState } from "react";
 // KOMPONEN KAMI
 import Sidebar from "@/components/sidebar";
 import Navbar from "@/components/navbar";
-import RemahRoti from "@/app/dataAdmin/components/remahRoti";
-import DaftarMenu from "@/app/dataAdmin/components/daftarMenu";
-import TabelAdmin from "@/app/dataAdmin/components/tabelAdmin";
-import GrafikAdmin from "@/app/dataAdmin/components/grafikAdmin";
+import RemahRoti from "@/app/dataPengguna/components/remahRoti";
+import DaftarMenu from "@/app/dataPengguna/components/daftarMenu";
+import TabelPengguna from "@/app/dataPengguna/components/tabelPengguna";
+import GrafikPengguna from "@/app/dataPengguna/components/grafikPengguna";
 import FooterSemua from "@/components/footer";
 // HOOKS KAMI
 import { useSidebar } from "@/hooks/useSidebar";
@@ -14,7 +14,7 @@ import { useSidebar } from "@/hooks/useSidebar";
 export default function DataAdmin() {
   const gambar = require("@/assets/image/1.jpg");
   const { sidebarTerbuka, toggleSidebar, refSidebar } = useSidebar();
-  const [daftarMenuAktif, setDaftarMenuAktif] = useState("admin");
+  const [daftarMenuAktif, setDaftarMenuAktif] = useState("pengguna");
 
   return (
     <section className="flex flex-col md:flex-row min-h-screen bg-[#0a0a0a] font-poppins">
@@ -29,7 +29,11 @@ export default function DataAdmin() {
         <Navbar gambar={gambar} toggleSidebar={toggleSidebar} />
         <RemahRoti />
         <DaftarMenu setDaftarMenuAktif={setDaftarMenuAktif} />
-        {daftarMenuAktif === "admin" ? <TabelAdmin /> : <GrafikAdmin />}
+        {daftarMenuAktif === "pengguna" ? (
+          <TabelPengguna />
+        ) : (
+          <GrafikPengguna />
+        )}
         <FooterSemua />
       </main>
     </section>

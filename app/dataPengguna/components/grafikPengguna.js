@@ -13,7 +13,7 @@ import Chart from "react-apexcharts";
 import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
-const GrafikAdmin = () => {
+const GrafikPengguna = () => {
   const [rentangWaktu, setRentangWaktu] = useState("1 tahun");
   const [dataGrafik, setDataGrafik] = useState([
     20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130,
@@ -62,7 +62,7 @@ const GrafikAdmin = () => {
       height: 240,
       series: [
         {
-          name: "Admin",
+          name: "Pengguna",
           data: dataGrafik,
         },
       ],
@@ -149,7 +149,7 @@ const GrafikAdmin = () => {
           <div className="w-max rounded-lg p-5 text-white flex gap-4 items-center">
             <Square3Stack3DIcon className="h-6 w-6 hidden sm:block" />
             <Typography color="white" className="text-md font-bold sm:text-xl">
-              Hitung Admin
+              Hitung Pengguna
             </Typography>
           </div>
           <div className="flex items-center p-4">
@@ -181,4 +181,4 @@ const GrafikAdmin = () => {
   );
 };
 
-export default GrafikAdmin;
+export default GrafikPengguna;
