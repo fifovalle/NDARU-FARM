@@ -11,7 +11,7 @@ const konten = [
   {
     number: "1",
     nama: "Nama Pengguna Admin",
-    jenisKelamin: "Pria",
+    jenisKelamin: "nama@gmail.com",
     nomorPonsel: "+62 812 3456 7890",
     pembuatanAkun: "31 Feb 2024",
   },
@@ -35,7 +35,7 @@ const TabelAdmin = () => {
             </th>
             <th className="p-4 pt-10 hidden xl:table-cell">
               <Typography variant="small" color="white" className="font-bold">
-                Jenis Kelamin
+                Email
               </Typography>
             </th>
             <th className="p-4 pt-10 hidden xl:table-cell">
