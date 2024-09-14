@@ -63,7 +63,7 @@ const Konten1 = () => {
               variant="h6"
               className="text-gray-300 font-semibold text-sm md:text-base lg:text-lg"
             >
-              Produksi Pertanian
+              Sarana Pertanian
             </Typography>
           </div>
           <Typography

@@ -24,6 +24,7 @@ import ModalTambahPengguna from "@/components/modalTambahPengguna";
 import ModalTambahSayuran from "@/components/modalTambahSayuran";
 import ModalTambahJasa from "@/components/modalTambahJasa";
 import ModalTambahBerita from "@/components/modalTambahBerita";
+import ModalTambahSaranaPertanian from "./modalTambahSaranaPertanian";
 
 const Napbar = ({ gambar, toggleSidebar }) => {
   const [terbukaModalTambahAdmin, setTerbukaModalTambahAdmin] = useState(false);
@@ -34,6 +35,10 @@ const Napbar = ({ gambar, toggleSidebar }) => {
   const [terbukaModalTambahJasa, setTerbukaModalTambahJasa] = useState(false);
   const [terbukaModalTambahBerita, setTerbukaModalTambahBerita] =
     useState(false);
+  const [
+    terbukaModalTambahSaranaPertanian,
+    setTerbukaModalTambahSaranaPertanian,
+  ] = useState(false);
   const tanganiTerbukaModalTambahAdmin = (status) =>
     setTerbukaModalTambahAdmin(status);
   const tanganiTerbukaModalTambahPengguna = (status) =>
@@ -44,6 +49,8 @@ const Napbar = ({ gambar, toggleSidebar }) => {
     setTerbukaModalTambahJasa(status);
   const tanganiTerbukaModalTambahBerita = (status) =>
     setTerbukaModalTambahBerita(status);
+  const tanganiTerbukaModalTambahSaranaPertanian = (status) =>
+    setTerbukaModalTambahSaranaPertanian(status);
 
   return (
     <>
@@ -57,7 +64,7 @@ const Napbar = ({ gambar, toggleSidebar }) => {
             <Bars3Icon className="h-6 w-6" />
           </IconButton>
           <Typography className="text-white font-bold text-sm sm:text-lg md:text-xl">
-            Super Admin
+            Pengelola
           </Typography>
         </div>
 
@@ -114,9 +121,12 @@ const Napbar = ({ gambar, toggleSidebar }) => {
                 Tambah Berita
               </MenuItem>
 
-              <MenuItem className="text-white flex items-center gap-2">
+              <MenuItem
+                onClick={() => tanganiTerbukaModalTambahSaranaPertanian(true)}
+                className="text-white flex items-center gap-2"
+              >
                 <PlusIcon className="h-5 w-5" />
-                Tambah Produksi Pertanian
+                Tambah Sarana Pertanian
               </MenuItem>
             </MenuList>
           </Menu>
@@ -174,6 +184,11 @@ const Napbar = ({ gambar, toggleSidebar }) => {
       <ModalTambahBerita
         terbuka={terbukaModalTambahBerita}
         tanganiTutup={tanganiTerbukaModalTambahBerita}
+      />
+
+      <ModalTambahSaranaPertanian
+        terbuka={terbukaModalTambahSaranaPertanian}
+        tanganiTutup={tanganiTerbukaModalTambahSaranaPertanian}
       />
     </>
   );

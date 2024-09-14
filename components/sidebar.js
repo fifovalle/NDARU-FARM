@@ -108,7 +108,7 @@ const Sidebar = ({ className }) => {
             <FaDatabase className="h-5 w-5 text-white font-semibold" />
           </ListItemPrefix>
           <Typography className="text-white font-semibold">
-            Produksi Pertanian
+            Sarana Pertanian
           </Typography>
         </ListItem>
       </List>
