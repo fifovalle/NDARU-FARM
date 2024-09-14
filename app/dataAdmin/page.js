@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import RemahRoti from "@/app/dataAdmin/components/remahRoti";
 import DaftarMenu from "@/app/dataAdmin/components/daftarMenu";
 import TabelAdmin from "./components/tabelAdmin";
+import GrafikAdmin from "./components/grafikAdmin";
 import FooterSemua from "@/components/footer";
 // HOOKS KAMI
 import { useSidebar } from "@/hooks/useSidebar";
@@ -28,13 +29,7 @@ export default function DataAdmin() {
         <Navbar gambar={gambar} toggleSidebar={toggleSidebar} />
         <RemahRoti />
         <DaftarMenu setDaftarMenuAktif={setDaftarMenuAktif} />
-        {daftarMenuAktif === "admin" ? (
-          <TabelAdmin />
-        ) : (
-          <div className="text-center text-white mt-10">
-            <p>Tidak ada data</p>
-          </div>
-        )}
+        {daftarMenuAktif === "admin" ? <TabelAdmin /> : <GrafikAdmin />}
         <FooterSemua />
       </main>
     </section>
