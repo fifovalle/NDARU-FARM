@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import {
   Card,
   CardBody,
@@ -9,9 +10,10 @@ import {
   MenuItem,
   Button,
 } from "@material-tailwind/react";
-import Chart from "react-apexcharts";
 import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const GrafikAdmin = () => {
   const [rentangWaktu, setRentangWaktu] = useState("1 tahun");
