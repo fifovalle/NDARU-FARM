@@ -6,7 +6,8 @@ import {
   ListItemPrefix,
 } from "@material-tailwind/react";
 import { HomeIcon, UserGroupIcon } from "@heroicons/react/24/solid";
-import { FaBook, FaDatabase } from "react-icons/fa";
+import { FaDatabase } from "react-icons/fa";
+import { AiOutlineTransaction } from "react-icons/ai";
 import { useRouter, usePathname } from "next/navigation";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
@@ -191,7 +192,7 @@ const Sidebar = ({ className }) => {
           } flex items-center`}
         >
           <ListItemPrefix>
-            <FaBook className="h-5 w-5 text-white font-semibold" />
+            <AiOutlineTransaction className="h-5 w-5 text-white font-semibold" />
           </ListItemPrefix>
           {!mengecil && (
             <Typography className="text-white font-semibold">
