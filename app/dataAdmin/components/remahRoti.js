@@ -13,7 +13,7 @@ const RemahRoti = () => {
       <div className="mb-6 w-full md:w-96 flex items-center gap-4">
         <Typography
           variant="h4"
-          className="text-white font-bold text-2xl sm:text-3xl md:text-4xl"
+          className="text-white font-bold text-md sm:text-3xl md:text-4xl"
         >
           Data Admin
         </Typography>

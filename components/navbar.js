@@ -56,7 +56,7 @@ const Napbar = ({ gambar, toggleSidebar }) => {
           >
             <Bars3Icon className="h-6 w-6" />
           </IconButton>
-          <Typography className="text-white font-bold text-lg md:text-xl">
+          <Typography className="text-white font-bold text-sm sm:text-lg md:text-xl">
             Peran Admin
           </Typography>
         </div>
