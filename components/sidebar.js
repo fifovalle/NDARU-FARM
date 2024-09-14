@@ -27,7 +27,7 @@ const Sidebar = ({ className }) => {
         <ListItem
           onClick={() => pengarah.push("/beranda")}
           className={`${
-            apakahAktif("/beranda") ? "bg-[#121212]" : "bg-[#0a0a0a]"
+            apakahAktif("/beranda") ? "bg-[#212121]" : "bg-[#0a0a0a]"
           } hover:bg-[#1a1a1a] transition-colors duration-300 h-10`}
         >
           <ListItemPrefix>
@@ -41,7 +41,7 @@ const Sidebar = ({ className }) => {
         <ListItem
           onClick={() => pengarah.push("/dataAdmin")}
           className={`${
-            apakahAktif("/dataAdmin") ? "bg-[#121212]" : "bg-[#0a0a0a]"
+            apakahAktif("/dataAdmin") ? "bg-[#212121]" : "bg-[#0a0a0a]"
           } hover:bg-[#1a1a1a] transition-colors duration-300 h-10`}
         >
           <ListItemPrefix>
@@ -53,7 +53,7 @@ const Sidebar = ({ className }) => {
         <ListItem
           onClick={() => pengarah.push("/dataPengguna")}
           className={`${
-            apakahAktif("/dataPengguna") ? "bg-[#121212]" : "bg-[#0a0a0a]"
+            apakahAktif("/dataPengguna") ? "bg-[#212121]" : "bg-[#0a0a0a]"
           } hover:bg-[#1a1a1a] transition-colors duration-300 h-10`}
         >
           <ListItemPrefix>
@@ -65,7 +65,7 @@ const Sidebar = ({ className }) => {
         <ListItem
           onClick={() => pengarah.push("/dataSayuran")}
           className={`${
-            apakahAktif("/dataSayuran") ? "bg-[#121212]" : "bg-[#0a0a0a]"
+            apakahAktif("/dataSayuran") ? "bg-[#212121]" : "bg-[#0a0a0a]"
           } hover:bg-[#1a1a1a] transition-colors duration-300 h-10`}
         >
           <ListItemPrefix>
@@ -77,7 +77,7 @@ const Sidebar = ({ className }) => {
         <ListItem
           onClick={() => pengarah.push("/dataJasa")}
           className={`${
-            apakahAktif("/jasa") ? "bg-[#121212]" : "bg-[#0a0a0a]"
+            apakahAktif("/dataJasa") ? "bg-[#212121]" : "bg-[#0a0a0a]"
           } hover:bg-[#1a1a1a] transition-colors duration-300 h-10`}
         >
           <ListItemPrefix>
@@ -89,7 +89,7 @@ const Sidebar = ({ className }) => {
         <ListItem
           onClick={() => pengarah.push("/berita")}
           className={`${
-            apakahAktif("/berita") ? "bg-[#121212]" : "bg-[#0a0a0a]"
+            apakahAktif("/berita") ? "bg-[#212121]" : "bg-[#0a0a0a]"
           } hover:bg-[#1a1a1a] transition-colors duration-300 h-10`}
         >
           <ListItemPrefix>
@@ -101,7 +101,7 @@ const Sidebar = ({ className }) => {
         <ListItem
           onClick={() => pengarah.push("/produksiPertanian")}
           className={`${
-            apakahAktif("/produksiPertanian") ? "bg-[#121212]" : "bg-[#0a0a0a]"
+            apakahAktif("/produksiPertanian") ? "bg-[#212121]" : "bg-[#0a0a0a]"
           } hover:bg-[#1a1a1a] transition-colors duration-300 h-10`}
         >
           <ListItemPrefix>
