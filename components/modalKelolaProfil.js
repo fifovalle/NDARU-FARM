@@ -169,7 +169,7 @@ const ModalKelolaProfil = ({ terbuka, tanganiTutup }) => {
           color="dark"
           onClick={() => tanganiTutup(false)}
         >
-          Tambah Admin
+          Simpan Perubahan
         </Button>
       </DialogFooter>
     </Dialog>
