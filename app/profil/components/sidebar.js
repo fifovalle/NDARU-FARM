@@ -4,14 +4,17 @@ import { Typography, Button } from "@material-tailwind/react";
 import { UserGroupIcon } from "@heroicons/react/24/solid";
 import { FaBox } from "react-icons/fa";
 
-const Sidebar = () => {
+const Sidebar = ({ className }) => {
   const gambarAdmin = require("@/assets/image/1.jpg");
 
   return (
-    <aside className="w-80 bg-[#0a0a0a] text-white h-screen fixed md:relative z-50 md:z-0 transition-all duration-300">
-      <section className="flex flex-col m-10">
+    <aside
+      className={`${className} 
+      w-64 bg-[#0a0a0a] text-white h-screen fixed md:relative z-50 md:z-0 transition-all duration-300`}
+    >
+      <section className="flex flex-col mt-10 mx-2">
         <div className="bg-[#1a1a1a] rounded-lg shadow-lg overflow-hidden">
-          <div className="flex items-center gap-4 p-4 bg-gray-800">
+          <div className="flex items-center gap-4 p-4">
             <Image
               src={gambarAdmin}
               alt="Foto Admin"
