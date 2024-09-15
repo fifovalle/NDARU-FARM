@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Typography, Button } from "@material-tailwind/react";
 import { UserGroupIcon } from "@heroicons/react/24/solid";
 import { FaBox } from "react-icons/fa";
+// KOMPONEN KAMI
+import ModalKelolaProfil from "@/components/modalKelolaProfil";
 
 const Sidebar = ({ className }) => {
   const gambarAdmin = require("@/assets/image/1.jpg");
+  const [terbukaModalKelolaProfil, setTerbukaModalKelolaProfil] =
+    useState(false);
+
+  const tanganiTerbukaModalKelolaProfil = (status) =>
+    setTerbukaModalKelolaProfil(status);
 
   return (
     <aside
@@ -49,7 +56,10 @@ const Sidebar = ({ className }) => {
               </div>
             </div>
           </div>
-          <Button className="flex items-center gap-2 p-2 px-4 my-5 mx-auto">
+          <Button
+            onClick={() => tanganiTerbukaModalKelolaProfil(true)}
+            className="flex items-center gap-2 p-2 px-4 my-5 mx-auto"
+          >
             <Typography color="white" className="font-bold text-sm">
               Kelola Profil
             </Typography>
@@ -86,6 +96,11 @@ const Sidebar = ({ className }) => {
           </div>
         </div>
       </section>
+
+      <ModalKelolaProfil
+        terbuka={terbukaModalKelolaProfil}
+        tanganiTutup={tanganiTerbukaModalKelolaProfil}
+      />
     </aside>
   );
 };
