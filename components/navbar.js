@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   Navbar,
   Typography,
@@ -19,6 +20,7 @@ import {
   PlusIcon,
 } from "@heroicons/react/24/solid";
 import { FaSignOutAlt } from "react-icons/fa";
+// KOMPONEN KAMI
 import ModalTambahAdmin from "@/components/modalTambahAdmin";
 import ModalTambahPengguna from "@/components/modalTambahPengguna";
 import ModalTambahSayuran from "@/components/modalTambahSayuran";
@@ -27,6 +29,7 @@ import ModalTambahBerita from "@/components/modalTambahBerita";
 import ModalTambahSaranaPertanian from "./modalTambahSaranaPertanian";
 
 const Napbar = ({ gambar, toggleSidebar }) => {
+  const pengarah = useRouter();
   const [terbukaModalTambahAdmin, setTerbukaModalTambahAdmin] = useState(false);
   const [terbukaModalTambahPengguna, setTerbukaModalTambahPengguna] =
     useState(false);
@@ -141,7 +144,10 @@ const Napbar = ({ gambar, toggleSidebar }) => {
             </MenuHandler>
 
             <MenuList className="bg-gradient-to-r from-[#121212] to-[#1c1c1c] border-none shadow-sm rounded-lg p-4">
-              <MenuItem className="text-white flex items-center gap-2 hover:bg-gray-700 transition duration-300 rounded-lg p-2">
+              <MenuItem
+                onClick={() => pengarah.push("/profil")}
+                className="text-white flex items-center gap-2 hover:bg-gray-700 transition duration-300 rounded-lg p-2"
+              >
                 <UserIcon className="h-5 w-5" />
                 Profil
               </MenuItem>
