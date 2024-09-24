@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   EllipsisVerticalIcon,
   PencilIcon,
@@ -6,16 +7,37 @@ import {
 import { Card, Typography } from "@material-tailwind/react";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
 
-const konten = [
-  {
-    nomorUrut: "1",
-    nama: "Viral Maling Jambu",
-    kategori: "Buah",
-    tanggalTerbit: "31 Feb 2024",
-  },
-];
+// HOOKS KAMI
+import useTampilkanBerita from "@/hooks/useTampilkanBerita";
+import useHapusBerita from "@/hooks/useHapusBerita";
+
+// KOMPONEN KAMI
+import ModalKonfirmasiHapusBerita from "@/components/modalKonfirmasiHapusBerita";
 
 const TabelBerita = () => {
+  const { tampilkanDataBerita, sedangMemuatTampilkanDataBerita } =
+    useTampilkanBerita();
+  const { hapusDataBerita, sedangMemuatHapusDataBerita } = useHapusBerita();
+  const [apakahModalTerbuka, setApakahModalTerbuka] = useState(false);
+  const [beritaYangDihapus, setBeritaYangDihapus] = useState(null);
+
+  const tanganiKetikaDiHapus = (beritaId) => {
+    setBeritaYangDihapus(beritaId);
+    setApakahModalTerbuka(true);
+  };
+
+  const tanganiKetikaDiKonfirmasi = async () => {
+    if (beritaYangDihapus) {
+      await hapusDataBerita(beritaYangDihapus);
+      setApakahModalTerbuka(false);
+      setBeritaYangDihapus(null);
+    }
+  };
+
+  if (sedangMemuatTampilkanDataBerita) {
+    return <p className="text-white text-center">Sedang memuat data...</p>;
+  }
+
   return (
     <Card className="mt-10 bg-gradient-to-l from-[#121212] to-[#0a0a0a] px-0 lg:px-10 md:px-10 sm:px-10">
       <table className="w-full min-w-max bg-[#212121] rounded-lg table-auto text-left">
@@ -49,16 +71,16 @@ const TabelBerita = () => {
           </tr>
         </thead>
         <tbody>
-          {konten.map(({ nomorUrut, nama, kategori, tanggalTerbit }) => {
-            return (
-              <tr key={nomorUrut} className="text-center">
+          {tampilkanDataBerita.length > 0 ? (
+            tampilkanDataBerita.map((berita, index) => (
+              <tr key={berita.id} className="text-center">
                 <td className="p-4 hidden md:table-cell lg:table-cell xl:table-cell">
                   <Typography
                     variant="small"
                     color="white"
                     className="font-bold"
                   >
-                    {nomorUrut}
+                    {index + 1}
                   </Typography>
                 </td>
                 <td className="p-4">
@@ -67,7 +89,7 @@ const TabelBerita = () => {
                     variant="small"
                     className="font-normal"
                   >
-                    {nama}
+                    {berita.Judul}
                   </Typography>
                 </td>
                 <td className="p-4 hidden xl:table-cell">
@@ -76,7 +98,7 @@ const TabelBerita = () => {
                     variant="small"
                     className="font-normal"
                   >
-                    {kategori}
+                    {berita.Kategori}
                   </Typography>
                 </td>
                 <td className="p-4 hidden xl:table-cell">
@@ -85,7 +107,7 @@ const TabelBerita = () => {
                     variant="small"
                     className="font-normal"
                   >
-                    {tanggalTerbit}
+                    {berita.Tanggal_Terbit}
                   </Typography>
                 </td>
                 <td className="p-2">
@@ -110,9 +132,11 @@ const TabelBerita = () => {
                         <MenuItem>
                           {({ active }) => (
                             <button
+                              onClick={() => tanganiKetikaDiHapus(berita.id)}
                               className={`${
                                 active ? "bg-gray-700" : ""
                               } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
+                              disabled={sedangMemuatHapusDataBerita}
                             >
                               <TrashIcon className="h-4 w-4 mr-2" />
                               Hapus
@@ -124,10 +148,28 @@ const TabelBerita = () => {
                   </Menu>
                 </td>
               </tr>
-            );
-          })}
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6" className="p-4 text-center">
+                <Typography
+                  color="white"
+                  variant="small"
+                  className="font-bold text-red-700"
+                >
+                  Tidak ada data berita!
+                </Typography>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
+
+      <ModalKonfirmasiHapusBerita
+        apakahTerbuka={apakahModalTerbuka}
+        ketikaDitutup={() => setApakahModalTerbuka(false)}
+        ketikaDikonfirmasi={tanganiKetikaDiKonfirmasi}
+      />
     </Card>
   );
 };

@@ -13,9 +13,9 @@ import {
 import { XMarkIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 // HOOKS KAMI
-import useMasukanAdmin from "@/hooks/useMasukanAdmin";
+import useSuntingAdmin from "@/hooks/useSuntingAdmin";
 
-const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
+const ModalSuntingAdmin = ({ terbuka, tanganiTutup, adminTerpilih }) => {
   const [lihatKataSandi, setLihatKataSandi] = useState(false);
   const [lihatKonfirmasiKataSandi, setLihatKonfirmasiKataSandi] =
     useState(false);
@@ -38,7 +38,7 @@ const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
     jenisKelamin,
     setJenisKelamin,
     simpanDataAdmin,
-  } = useMasukanAdmin();
+  } = useSuntingAdmin(adminTerpilih);
 
   const toggleLihatKataSandi = () => setLihatKataSandi(!lihatKataSandi);
   const toggleLihatKonfirmasiKataSandi = () =>
@@ -172,11 +172,11 @@ const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
       </DialogBody>
       <DialogFooter>
         <Button variant="gradient" color="dark" onClick={tanganiKetikaDisimpan}>
-          Tambah Admin
+          Sunting Admin
         </Button>
       </DialogFooter>
     </Dialog>
   );
 };
 
-export default ModalTambahAdmin;
+export default ModalSuntingAdmin;

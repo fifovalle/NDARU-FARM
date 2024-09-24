@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Dialog,
   DialogHeader,
@@ -12,15 +12,29 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+// HOOKS KAMI
+import useMasukanSayuran from "@/hooks/useMasukanSayuran";
 
 const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
-  const [gambarSayuran, setGambarSayuran] = useState(null);
+  const {
+    namaSayuran,
+    setNamaSayuran,
+    gambarSayuran,
+    tanganiGambarSayuran,
+    hargaSayuran,
+    setHargaSayuran,
+    pilihBeratSayuran,
+    setPilihBeratSayuran,
+    stokSayuran,
+    setStokSayuran,
+    deskripsiSayuran,
+    setDeskripsiSayuran,
+    simpanDataSayuran,
+  } = useMasukanSayuran();
 
-  const tanganiGambarSayuran = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setGambarSayuran(URL.createObjectURL(file));
-    }
+  const tanganiKetikaDisimpan = async () => {
+    await simpanDataSayuran();
+    tanganiTutup();
   };
 
   return (
@@ -82,6 +96,8 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
             color="white"
             label="Nama Sayuran"
             className="bg-[#1a1a1a] text-white"
+            value={namaSayuran}
+            onChange={(e) => setNamaSayuran(e.target.value)}
           />
 
           <div className="flex flex-col md:flex-row gap-2">
@@ -90,12 +106,16 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
               label="Harga Sayuran"
               type="number"
               className="bg-[#1a1a1a] text-white flex-1"
+              value={hargaSayuran}
+              onChange={(e) => setHargaSayuran(e.target.value)}
             />
 
             <Select
               label="Pilih Berat Sayuran"
               labelProps={{ className: "text-white" }}
               className="text-white flex-1"
+              value={pilihBeratSayuran}
+              onChange={(value) => setPilihBeratSayuran(value)}
             >
               <Option value="1">1 Kg</Option>
               <Option value="2">2 Kg</Option>
@@ -109,6 +129,8 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
               label="Stok Sayuran"
               type="number"
               className="bg-[#1a1a1a] text-white flex-1"
+              value={stokSayuran}
+              onChange={(e) => setStokSayuran(e.target.value)}
             />
           </div>
 
@@ -116,15 +138,13 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
             color="white"
             label="Deskripsi Sayuran"
             className="bg-[#1a1a1a] text-white"
+            value={deskripsiSayuran}
+            onChange={(e) => setDeskripsiSayuran(e.target.value)}
           />
         </form>
       </DialogBody>
       <DialogFooter>
-        <Button
-          variant="gradient"
-          color="dark"
-          onClick={() => tanganiTutup(false)}
-        >
+        <Button variant="gradient" color="dark" onClick={tanganiKetikaDisimpan}>
           Tambah Sayuran
         </Button>
       </DialogFooter>
