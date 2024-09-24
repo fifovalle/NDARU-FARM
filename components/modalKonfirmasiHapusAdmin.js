@@ -12,17 +12,15 @@ export default function ModalKonfirmasiHapusAdmin({
   ketikaDitutup,
   ketikaDikonfirmasi,
 }) {
-  if (!apakahTerbuka) return null;
-
   return (
     <Dialog
+      open={apakahTerbuka}
+      handler={ketikaDitutup}
       size="xs"
       animate={{
         mount: { scale: 1, y: 0 },
         unmount: { scale: 0.9, y: -100 },
       }}
-      open={apakahTerbuka}
-      handler={ketikaDitutup}
       className="bg-[#1F1F1F] rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-4 p-4"
     >
       <DialogHeader className="text-lg font-semibold text-white">

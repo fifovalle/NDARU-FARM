@@ -12,8 +12,6 @@ export default function ModalKonfirmasiHapusBerita({
   ketikaDitutup,
   ketikaDikonfirmasi,
 }) {
-  if (!apakahTerbuka) return null;
-
   return (
     <Dialog
       size="xs"

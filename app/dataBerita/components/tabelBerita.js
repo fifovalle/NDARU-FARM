@@ -18,18 +18,20 @@ const TabelBerita = () => {
   const { tampilkanDataBerita, sedangMemuatTampilkanDataBerita } =
     useTampilkanBerita();
   const { hapusDataBerita, sedangMemuatHapusDataBerita } = useHapusBerita();
-  const [apakahModalTerbuka, setApakahModalTerbuka] = useState(false);
+  const [apakahModalHapusTerbuka, setApakahModalHapusTerbuka] = useState(false);
   const [beritaYangDihapus, setBeritaYangDihapus] = useState(null);
+  const [gambarBeritaYangDiHapus, setGambarBeritaYangDiHapus] = useState(null);
 
-  const tanganiKetikaDiHapus = (beritaId) => {
-    setBeritaYangDihapus(beritaId);
-    setApakahModalTerbuka(true);
+  const tanganiKetikaDiHapus = (idBerita, urlGambar) => {
+    setBeritaYangDihapus(idBerita);
+    setGambarBeritaYangDiHapus(urlGambar);
+    setApakahModalHapusTerbuka(true);
   };
 
   const tanganiKetikaDiKonfirmasi = async () => {
-    if (beritaYangDihapus) {
-      await hapusDataBerita(beritaYangDihapus);
-      setApakahModalTerbuka(false);
+    if (beritaYangDihapus && gambarBeritaYangDiHapus) {
+      await hapusDataBerita(beritaYangDihapus, gambarBeritaYangDiHapus);
+      setApakahModalHapusTerbuka(false);
       setBeritaYangDihapus(null);
     }
   };
@@ -132,7 +134,9 @@ const TabelBerita = () => {
                         <MenuItem>
                           {({ active }) => (
                             <button
-                              onClick={() => tanganiKetikaDiHapus(berita.id)}
+                              onClick={() =>
+                                tanganiKetikaDiHapus(berita.id, berita.Gambar)
+                              }
                               className={`${
                                 active ? "bg-gray-700" : ""
                               } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
@@ -166,8 +170,8 @@ const TabelBerita = () => {
       </table>
 
       <ModalKonfirmasiHapusBerita
-        apakahTerbuka={apakahModalTerbuka}
-        ketikaDitutup={() => setApakahModalTerbuka(false)}
+        apakahTerbuka={apakahModalHapusTerbuka}
+        ketikaDitutup={() => setApakahModalHapusTerbuka(false)}
         ketikaDikonfirmasi={tanganiKetikaDiKonfirmasi}
       />
     </Card>

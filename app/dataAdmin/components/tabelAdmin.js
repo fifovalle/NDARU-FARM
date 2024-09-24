@@ -21,7 +21,7 @@ const TabelAdmin = () => {
     useTampilkanAdmin();
   const { hapusDataAdmin, sedangMemuatHapusDataAdmin } = useHapusAdmin();
 
-  const [apakahModalTerbuka, setApakahModalTerbuka] = useState(false);
+  const [apakahModalHapusTerbuka, setApakahModalHapusTerbuka] = useState(false);
   const [adminYangDihapus, setAdminYangDihapus] = useState(null);
   const [apakahModalSuntingTerbuka, setApakahModalSuntingTerbuka] =
     useState(false);
@@ -29,13 +29,13 @@ const TabelAdmin = () => {
 
   const tanganiKetikaDiHapus = (adminId) => {
     setAdminYangDihapus(adminId);
-    setApakahModalTerbuka(true);
+    setApakahModalHapusTerbuka(true);
   };
 
   const tanganiKetikaDiKonfirmasi = async () => {
     if (adminYangDihapus) {
       await hapusDataAdmin(adminYangDihapus);
-      setApakahModalTerbuka(false);
+      setApakahModalHapusTerbuka(false);
       setAdminYangDihapus(null);
     }
   };
@@ -199,8 +199,8 @@ const TabelAdmin = () => {
       )}
 
       <ModalKonfirmasiHapusAdmin
-        apakahTerbuka={apakahModalTerbuka}
-        ketikaDitutup={() => setApakahModalTerbuka(false)}
+        apakahTerbuka={apakahModalHapusTerbuka}
+        ketikaDitutup={() => setApakahModalHapusTerbuka(false)}
         ketikaDikonfirmasi={tanganiKetikaDiKonfirmasi}
       />
 
