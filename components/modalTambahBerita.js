@@ -14,7 +14,7 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 // HOOKS KAMI
-import useMasukanBerita from "@/hooks/useMasukanBerita";
+import useTambahBerita from "@/hooks/useTambahBerita";
 
 const ModalTambahBerita = ({ terbuka, tanganiTutup }) => {
   const {
@@ -29,7 +29,7 @@ const ModalTambahBerita = ({ terbuka, tanganiTutup }) => {
     setDeskripsiBerita,
     simpanDataBerita,
     tanganiGambarBerita,
-  } = useMasukanBerita();
+  } = useTambahBerita();
 
   const tanganiKetikaDisimpan = async () => {
     await simpanDataBerita();

@@ -34,7 +34,7 @@ export default function useTampilkanAdmin() {
     const tanggalFilter = new Date(tanggal).setHours(0, 0, 0, 0);
     const tanggalNext = new Date(tanggal).setHours(23, 59, 59, 999);
 
-    const count = tampilkanDataAdmin.filter((admin) => {
+    const hitung = tampilkanDataAdmin.filter((admin) => {
       const tanggalPembuatan = admin.Tanggal_Pembuatan
         ? admin.Tanggal_Pembuatan.toDate()
         : new Date(admin.Tanggal_Pembuatan);
@@ -52,7 +52,7 @@ export default function useTampilkanAdmin() {
       );
     }).length;
 
-    return count;
+    return hitung;
   };
 
   return {

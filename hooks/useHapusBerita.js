@@ -19,7 +19,7 @@ export default function useHapusBerita() {
         const storage = getStorage();
         const gambarRef = ref(storage, urlGambar);
         await deleteObject(gambarRef);
-        toast.success("Gambar berhasil dihapus dari penyimpanan...");
+        toast.success("Gambar berhasil dihapus dari penyimpanan.");
       }
     } catch (error) {
       toast.error("Terjadi kesalahan saat menghapus berita.");

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   EllipsisVerticalIcon,
   PencilIcon,
@@ -8,17 +9,22 @@ import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
 
 // HOOKS KAMI
 import useTampilkanSayuran from "@/hooks/useTampilkanSayuran";
-
 // KOMPONEN KAMI
-import MemuatRangkaTampilkanTabelAdmin from "@/app/dataSayuran/components/memuatRangkaTampilkanTabelSayuran";
+import MemuatRangkaTampilkanTabelSayuran from "@/app/dataSayuran/components/memuatRangkaTampilkanTabelSayuran";
+import ModalSuntingSayuran from "@/components/modalSuntingSayuran";
 
 const TabelSayuran = () => {
   const { tampilkanDataSayuran, sedangMemuatTampilkanDataSayuran } =
     useTampilkanSayuran();
+  const [sayuranTerpilih, setSayuranTerpilih] = useState(null);
+  const [apakahModalSuntingTerbuka, setApakahModalSuntingTerbuka] =
+    useState(false);
 
-  if (sedangMemuatTampilkanDataSayuran) {
-    return <p className="text-white text-center">Sedang memuat data...</p>;
-  }
+  const tanganiKetikaDiSunting = (sayuran) => {
+    setSayuranTerpilih(sayuran);
+    setApakahModalSuntingTerbuka(true);
+  };
+
   return (
     <Card className="mt-10 bg-gradient-to-l from-[#121212] to-[#0a0a0a] px-0 lg:px-10 md:px-10 sm:px-10">
       {sedangMemuatTampilkanDataSayuran ? (
@@ -64,15 +70,15 @@ const TabelSayuran = () => {
           </thead>
           <tbody>
             {tampilkanDataSayuran.length > 0 ? (
-              tampilkanDataSayuran.map((sayuran, index) => (
-                <tr key={sayuran.id} className="text-center">
+              tampilkanDataSayuran.map((sayuran, indeks) => (
+                <tr key={indeks} className="text-center">
                   <td className="p-4 hidden md:table-cell lg:table-cell xl:table-cell">
                     <Typography
                       variant="small"
                       color="white"
                       className="font-bold"
                     >
-                      {index + 1}
+                      {indeks + 1}
                     </Typography>
                   </td>
                   <td className="p-4">
@@ -121,6 +127,9 @@ const TabelSayuran = () => {
                           <MenuItem>
                             {({ active }) => (
                               <button
+                                onClick={() =>
+                                  tanganiKetikaDiSunting(sayuran.id)
+                                }
                                 className={`${
                                   active ? "bg-gray-700" : ""
                                 } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
@@ -133,11 +142,15 @@ const TabelSayuran = () => {
                           <MenuItem>
                             {({ active }) => (
                               <button
-                                onClick={() => tanganiKetikaDiHapus(sayuran.id)}
+                                onClick={() =>
+                                  tanganiKetikaDiHapus(
+                                    sayuran.id,
+                                    sayuran.Gambar
+                                  )
+                                }
                                 className={`${
                                   active ? "bg-gray-700" : ""
                                 } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
-                                disabled={sedangMemuatHapusDataSayuran}
                               >
                                 <TrashIcon className="h-4 w-4 mr-2" />
                                 Hapus
@@ -166,6 +179,11 @@ const TabelSayuran = () => {
           </tbody>
         </table>
       )}
+      <ModalSuntingSayuran
+        terbuka={apakahModalSuntingTerbuka}
+        tanganiTutup={() => setApakahModalSuntingTerbuka(false)}
+        sayuranTerpilih={sayuranTerpilih}
+      />
     </Card>
   );
 };

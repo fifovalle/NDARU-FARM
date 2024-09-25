@@ -13,7 +13,7 @@ import {
 import { XMarkIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 // HOOKS KAMI
-import useMasukanAdmin from "@/hooks/useMasukanAdmin";
+import useTambahAdmin from "@/hooks/useTambahAdmin";
 
 const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
   const [lihatKataSandi, setLihatKataSandi] = useState(false);
@@ -38,7 +38,7 @@ const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
     jenisKelamin,
     setJenisKelamin,
     simpanDataAdmin,
-  } = useMasukanAdmin();
+  } = useTambahAdmin();
 
   const toggleLihatKataSandi = () => setLihatKataSandi(!lihatKataSandi);
   const toggleLihatKonfirmasiKataSandi = () =>

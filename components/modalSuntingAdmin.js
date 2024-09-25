@@ -70,7 +70,7 @@ const ModalSuntingAdmin = ({ terbuka, tanganiTutup, adminTerpilih }) => {
         </IconButton>
       </div>
 
-      <DialogHeader className="text-white">Tambah Admin Baru</DialogHeader>
+      <DialogHeader className="text-white">Sunting Admin</DialogHeader>
       <DialogBody divider>
         <form className="flex flex-col gap-4">
           <div className="flex flex-col md:flex-row gap-5">

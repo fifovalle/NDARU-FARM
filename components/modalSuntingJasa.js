@@ -12,28 +12,28 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-// HOOKS KAMI
-import useTambahSayuran from "@/hooks/useTambahSayuran";
 
-const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
+// HOOKS KAMI
+import useSuntingJasa from "@/hooks/useSuntingJasa";
+
+const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaTerpilih }) => {
   const {
-    namaSayuran,
-    setNamaSayuran,
-    gambarSayuran,
-    tanganiGambarSayuran,
-    hargaSayuran,
-    setHargaSayuran,
-    pilihBeratSayuran,
-    setPilihBeratSayuran,
-    stokSayuran,
-    setStokSayuran,
-    deskripsiSayuran,
-    setDeskripsiSayuran,
-    simpanDataSayuran,
-  } = useTambahSayuran();
+    gambarJasa,
+    namaJasa,
+    setNamaJasa,
+    hargaJasa,
+    setHargaJasa,
+    jangkaWaktuJasa,
+    setJangkaWaktuJasa,
+    deskripsiJasa,
+    setDeskripsiJasa,
+    simpanDataJasa,
+    tanganiGambarJasa,
+    sedangMemuatSuntingJasa,
+  } = useSuntingJasa(jasaTerpilih);
 
   const tanganiKetikaDisimpan = async () => {
-    await simpanDataSayuran();
+    await simpanDataJasa();
     tanganiTutup();
   };
 
@@ -45,7 +45,7 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
         mount: { scale: 1, y: 0 },
         unmount: { scale: 0.9, y: -100 },
       }}
-      size="lg"
+      size="md"
       className="bg-[#121212] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-4"
     >
       <div className="absolute top-3 right-3">
@@ -58,13 +58,16 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
         </IconButton>
       </div>
 
-      <DialogHeader className="text-white">Tambah Sayuran Baru</DialogHeader>
+      <DialogHeader className="text-white">Sunting Jasa</DialogHeader>
       <DialogBody divider>
-        <form className="flex flex-col gap-4">
-          {gambarSayuran ? (
+        <form
+          className="flex flex-col gap-4"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          {gambarJasa ? (
             <div className="flex justify-center mb-4">
               <img
-                src={gambarSayuran}
+                src={gambarJasa}
                 alt="Pratinjau Gambar"
                 className="w-52 h-52 object-cover rounded-lg border border-gray-300"
               />
@@ -81,7 +84,7 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
             type="file"
             accept="image/*"
             id="unggah-gambar"
-            onChange={tanganiGambarSayuran}
+            onChange={tanganiGambarJasa}
             style={{ display: "none" }}
           />
 
@@ -89,67 +92,66 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
             htmlFor="unggah-gambar"
             className="flex items-center justify-center bg-[#1a1a1a] text-white p-3 rounded-lg cursor-pointer"
           >
-            <span className="mr-3">Pilih Gambar Sayuran</span>
+            <span className="mr-3">Pilih Gambar Jasa</span>
           </label>
 
           <Input
             color="white"
-            label="Nama Sayuran"
+            label="Nama Jasa"
             className="bg-[#1a1a1a] text-white"
-            value={namaSayuran}
-            onChange={(e) => setNamaSayuran(e.target.value)}
+            value={namaJasa}
+            onChange={(e) => setNamaJasa(e.target.value)}
           />
 
           <div className="flex flex-col md:flex-row gap-2">
             <Input
               color="white"
-              label="Harga Sayuran"
+              label="Harga Jasa"
               type="number"
               className="bg-[#1a1a1a] text-white flex-1"
-              value={hargaSayuran}
-              onChange={(e) => setHargaSayuran(e.target.value)}
+              value={hargaJasa}
+              onChange={(e) => setHargaJasa(e.target.value)}
             />
 
             <Select
-              label="Pilih Berat Sayuran"
+              label="Pilih Jangka Waktu Jasa"
               labelProps={{ className: "text-white" }}
               className="text-white flex-1"
-              value={pilihBeratSayuran}
-              onChange={(value) => setPilihBeratSayuran(value)}
+              value={jangkaWaktuJasa}
+              onChange={(e) => setJangkaWaktuJasa(e)}
             >
-              <Option value="1">1 Kg</Option>
-              <Option value="2">2 Kg</Option>
-              <Option value="3">3 Kg</Option>
-              <Option value="4">4 Kg</Option>
-              <Option value="5">5 Kg</Option>
+              <Option value="1">1 Bulan</Option>
+              <Option value="2">2 Bulan</Option>
+              <Option value="3">3 Bulan</Option>
+              <Option value="4">4 Bulan</Option>
+              <Option value="5">5 Bulan</Option>
             </Select>
-
-            <Input
-              color="white"
-              label="Stok Sayuran"
-              type="number"
-              className="bg-[#1a1a1a] text-white flex-1"
-              value={stokSayuran}
-              onChange={(e) => setStokSayuran(e.target.value)}
-            />
           </div>
 
           <Textarea
             color="white"
-            label="Deskripsi Sayuran"
+            label="Deskripsi Jasa"
             className="bg-[#1a1a1a] text-white"
-            value={deskripsiSayuran}
-            onChange={(e) => setDeskripsiSayuran(e.target.value)}
+            value={deskripsiJasa}
+            onChange={(e) => setDeskripsiJasa(e.target.value)}
           />
         </form>
       </DialogBody>
       <DialogFooter>
-        <Button variant="gradient" color="dark" onClick={tanganiKetikaDisimpan}>
-          Tambah Sayuran
+        <Button
+          className={`${
+            sedangMemuatSuntingJasa ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+          variant="gradient"
+          color="dark"
+          onClick={tanganiKetikaDisimpan}
+          disabled={sedangMemuatSuntingJasa}
+        >
+          {sedangMemuatSuntingJasa ? "Menyimpan..." : "Sunting Jasa"}
         </Button>
       </DialogFooter>
     </Dialog>
   );
 };
 
-export default ModalTambahSayuran;
+export default ModalSuntingJasa;

@@ -118,18 +118,6 @@ const TabelPengguna = () => {
                                   active ? "bg-gray-700" : ""
                                 } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
                               >
-                                <PencilIcon className="h-4 w-4 mr-2" />
-                                Sunting
-                              </button>
-                            )}
-                          </MenuItem>
-                          <MenuItem>
-                            {({ active }) => (
-                              <button
-                                className={`${
-                                  active ? "bg-gray-700" : ""
-                                } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
-                              >
                                 <TrashIcon className="h-4 w-4 mr-2" />
                                 Hapus
                               </button>

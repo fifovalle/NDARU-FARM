@@ -22,7 +22,6 @@ import {
 import { FaSignOutAlt } from "react-icons/fa";
 // KOMPONEN KAMI
 import ModalTambahAdmin from "@/components/modalTambahAdmin";
-import ModalTambahPengguna from "@/components/modalTambahPengguna";
 import ModalTambahSayuran from "@/components/modalTambahSayuran";
 import ModalTambahJasa from "@/components/modalTambahJasa";
 import ModalTambahBerita from "@/components/modalTambahBerita";
@@ -31,8 +30,6 @@ import ModalTambahSaranaPertanian from "./modalTambahSaranaPertanian";
 const Napbar = ({ gambar, toggleSidebar }) => {
   const pengarah = useRouter();
   const [terbukaModalTambahAdmin, setTerbukaModalTambahAdmin] = useState(false);
-  const [terbukaModalTambahPengguna, setTerbukaModalTambahPengguna] =
-    useState(false);
   const [terbukaModalTambahSayuran, setTerbukaModalTambahSayuran] =
     useState(false);
   const [terbukaModalTambahJasa, setTerbukaModalTambahJasa] = useState(false);
@@ -44,8 +41,6 @@ const Napbar = ({ gambar, toggleSidebar }) => {
   ] = useState(false);
   const tanganiTerbukaModalTambahAdmin = (status) =>
     setTerbukaModalTambahAdmin(status);
-  const tanganiTerbukaModalTambahPengguna = (status) =>
-    setTerbukaModalTambahPengguna(status);
   const tanganiTerbukaModalSayuran = (status) =>
     setTerbukaModalTambahSayuran(status);
   const tanganiTerbukaModalTambahJasa = (status) =>
@@ -90,14 +85,6 @@ const Napbar = ({ gambar, toggleSidebar }) => {
               >
                 <UserPlusIcon className="h-5 w-5" />
                 Tambah Admin
-              </MenuItem>
-
-              <MenuItem
-                onClick={() => tanganiTerbukaModalTambahPengguna(true)}
-                className="text-white flex items-center gap-2"
-              >
-                <UserPlusIcon className="h-5 w-5" />
-                Tambah Pengguna
               </MenuItem>
 
               <MenuItem
@@ -170,11 +157,6 @@ const Napbar = ({ gambar, toggleSidebar }) => {
       <ModalTambahAdmin
         terbuka={terbukaModalTambahAdmin}
         tanganiTutup={tanganiTerbukaModalTambahAdmin}
-      />
-
-      <ModalTambahPengguna
-        terbuka={terbukaModalTambahPengguna}
-        tanganiTutup={tanganiTerbukaModalTambahPengguna}
       />
 
       <ModalTambahSayuran

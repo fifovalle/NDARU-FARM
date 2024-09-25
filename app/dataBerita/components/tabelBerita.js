@@ -13,6 +13,7 @@ import useHapusBerita from "@/hooks/useHapusBerita";
 
 // KOMPONEN KAMI
 import ModalKonfirmasiHapusBerita from "@/components/modalKonfirmasiHapusBerita";
+import ModalSuntingBerita from "@/components/modalSuntingBerita";
 
 const TabelBerita = () => {
   const { tampilkanDataBerita, sedangMemuatTampilkanDataBerita } =
@@ -21,6 +22,9 @@ const TabelBerita = () => {
   const [apakahModalHapusTerbuka, setApakahModalHapusTerbuka] = useState(false);
   const [beritaYangDihapus, setBeritaYangDihapus] = useState(null);
   const [gambarBeritaYangDiHapus, setGambarBeritaYangDiHapus] = useState(null);
+  const [beritaYangDisunting, setBeritaYangDisunting] = useState(null);
+  const [apakahModalSuntingTerbuka, setApakahModalSuntingTerbuka] =
+    useState(false);
 
   const tanganiKetikaDiHapus = (idBerita, urlGambar) => {
     setBeritaYangDihapus(idBerita);
@@ -34,6 +38,11 @@ const TabelBerita = () => {
       setApakahModalHapusTerbuka(false);
       setBeritaYangDihapus(null);
     }
+  };
+
+  const tanganiKetikaSunting = (berita) => {
+    setBeritaYangDisunting(berita);
+    setApakahModalSuntingTerbuka(true);
   };
 
   if (sedangMemuatTampilkanDataBerita) {
@@ -122,6 +131,7 @@ const TabelBerita = () => {
                         <MenuItem>
                           {({ active }) => (
                             <button
+                              onClick={() => tanganiKetikaSunting(berita)}
                               className={`${
                                 active ? "bg-gray-700" : ""
                               } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
@@ -155,13 +165,13 @@ const TabelBerita = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="6" className="p-4 text-center">
+              <td colSpan="5" className="p-4">
                 <Typography
                   color="white"
                   variant="small"
-                  className="font-bold text-red-700"
+                  className="text-center"
                 >
-                  Tidak ada data berita!
+                  Tidak ada berita yang tersedia.
                 </Typography>
               </td>
             </tr>
@@ -173,6 +183,12 @@ const TabelBerita = () => {
         apakahTerbuka={apakahModalHapusTerbuka}
         ketikaDitutup={() => setApakahModalHapusTerbuka(false)}
         ketikaDikonfirmasi={tanganiKetikaDiKonfirmasi}
+      />
+
+      <ModalSuntingBerita
+        terbuka={apakahModalSuntingTerbuka}
+        beritaTerpilih={beritaYangDisunting}
+        tanganiTutup={() => setApakahModalSuntingTerbuka(false)}
       />
     </Card>
   );

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db } from "@/lib/firebaseConfig";
 import { toast } from "react-toastify";
 
-export default function useTampilkanSayuran() {
+export default function useTambahSayuran() {
   const [namaSayuran, setNamaSayuran] = useState("");
   const [hargaSayuran, setHargaSayuran] = useState("");
   const [pilihBeratSayuran, setPilihBeratSayuran] = useState("");

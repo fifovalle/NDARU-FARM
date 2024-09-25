@@ -3,7 +3,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
 import { toast } from "react-toastify";
 
-export default function useMasukanAdmin() {
+export default function useTambahAdmin() {
   const [namaDepan, setNamaDepan] = useState("");
   const [namaBelakang, setNamaBelakang] = useState("");
   const [namaPengguna, setNamaPengguna] = useState("");
