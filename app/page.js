@@ -7,12 +7,13 @@ import { FaFacebook, FaEye, FaEyeSlash } from "react-icons/fa";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// HOOKS KAMI
+// PENGAIT KAMI
 import { useMasukDenganGoogle } from "@/hooks/useMasukDenganGoogle";
 
 export default function Index() {
   const vektor1 = require("@/assets/image/vektor1.png");
   const pengarah = useRouter();
+
   const [namaPengguna, setNamaPengguna] = useState(false);
   const [kataSandi, setKataSandi] = useState(false);
   const [lihatKataSandi, setLihatKataSandi] = useState(false);

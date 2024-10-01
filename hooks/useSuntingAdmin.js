@@ -12,6 +12,8 @@ export default function useSuntingAdmin(idAdmin = null) {
   const [konfirmasiKataSandi, setKonfirmasiKataSandi] = useState("");
   const [nomorPonsel, setNomorPonsel] = useState("");
   const [jenisKelamin, setJenisKelamin] = useState("");
+  const [sedangMemuatSuntingAdmin, setSedangMemuatSuntingAdmin] =
+    useState(false);
 
   const apakahEmailValid = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -83,6 +85,7 @@ export default function useSuntingAdmin(idAdmin = null) {
     }
 
     try {
+      setSedangMemuatSuntingAdmin(true);
       if (idAdmin) {
         const docRef = doc(db, "admin", idAdmin);
         await updateDoc(docRef, {
@@ -99,6 +102,8 @@ export default function useSuntingAdmin(idAdmin = null) {
       }
     } catch (error) {
       toast.error("Gagal menyimpan data admin: " + error.message);
+    } finally {
+      setSedangMemuatSuntingAdmin(false);
     }
   };
 
@@ -126,5 +131,6 @@ export default function useSuntingAdmin(idAdmin = null) {
     jenisKelamin,
     setJenisKelamin,
     simpanDataAdmin,
+    sedangMemuatSuntingAdmin,
   };
 }

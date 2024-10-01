@@ -7,47 +7,26 @@ import {
 import { Card, Typography } from "@material-tailwind/react";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
 
-// HOOKS KAMI
-import useTampilkanBerita from "@/hooks/useTampilkanBerita";
-import useHapusBerita from "@/hooks/useHapusBerita";
-
 // KOMPONEN KAMI
-import ModalKonfirmasiHapusBerita from "@/components/modalKonfirmasiHapusBerita";
 import ModalSuntingBerita from "@/components/modalSuntingBerita";
+import ModalHapusBerita from "@/components/modalHapusBerita";
+
+const konten = [
+  {
+    nomorUrut: "1",
+    nama: "Viral Maling Jambu",
+    kategori: "Buah",
+    tanggalTerbit: "31 Feb 2024",
+  },
+];
 
 const TabelBerita = () => {
-  const { tampilkanDataBerita, sedangMemuatTampilkanDataBerita } =
-    useTampilkanBerita();
-  const { hapusDataBerita, sedangMemuatHapusDataBerita } = useHapusBerita();
-  const [apakahModalHapusTerbuka, setApakahModalHapusTerbuka] = useState(false);
-  const [beritaYangDihapus, setBeritaYangDihapus] = useState(null);
-  const [gambarBeritaYangDiHapus, setGambarBeritaYangDiHapus] = useState(null);
-  const [beritaYangDisunting, setBeritaYangDisunting] = useState(null);
-  const [apakahModalSuntingTerbuka, setApakahModalSuntingTerbuka] =
-    useState(false);
+  const [bukaModalSuntingBerita, setBukaModalSuntingBerita] = useState(false);
+  const [bukaModalHapusBerita, setBukaModalHapusBerita] = useState(false);
 
-  const tanganiKetikaDiHapus = (idBerita, urlGambar) => {
-    setBeritaYangDihapus(idBerita);
-    setGambarBeritaYangDiHapus(urlGambar);
-    setApakahModalHapusTerbuka(true);
+  const hapusBerita = () => {
+    setBukaModalHapusBerita(false);
   };
-
-  const tanganiKetikaDiKonfirmasi = async () => {
-    if (beritaYangDihapus && gambarBeritaYangDiHapus) {
-      await hapusDataBerita(beritaYangDihapus, gambarBeritaYangDiHapus);
-      setApakahModalHapusTerbuka(false);
-      setBeritaYangDihapus(null);
-    }
-  };
-
-  const tanganiKetikaSunting = (berita) => {
-    setBeritaYangDisunting(berita);
-    setApakahModalSuntingTerbuka(true);
-  };
-
-  if (sedangMemuatTampilkanDataBerita) {
-    return <p className="text-white text-center">Sedang memuat data...</p>;
-  }
 
   return (
     <Card className="mt-10 bg-gradient-to-l from-[#121212] to-[#0a0a0a] px-0 lg:px-10 md:px-10 sm:px-10">
@@ -82,16 +61,16 @@ const TabelBerita = () => {
           </tr>
         </thead>
         <tbody>
-          {tampilkanDataBerita.length > 0 ? (
-            tampilkanDataBerita.map((berita, index) => (
-              <tr key={berita.id} className="text-center">
+          {konten.map(({ nomorUrut, nama, kategori, tanggalTerbit }) => {
+            return (
+              <tr key={nomorUrut} className="text-center">
                 <td className="p-4 hidden md:table-cell lg:table-cell xl:table-cell">
                   <Typography
                     variant="small"
                     color="white"
                     className="font-bold"
                   >
-                    {index + 1}
+                    {nomorUrut}
                   </Typography>
                 </td>
                 <td className="p-4">
@@ -100,7 +79,7 @@ const TabelBerita = () => {
                     variant="small"
                     className="font-normal"
                   >
-                    {berita.Judul}
+                    {nama}
                   </Typography>
                 </td>
                 <td className="p-4 hidden xl:table-cell">
@@ -109,7 +88,7 @@ const TabelBerita = () => {
                     variant="small"
                     className="font-normal"
                   >
-                    {berita.Kategori}
+                    {kategori}
                   </Typography>
                 </td>
                 <td className="p-4 hidden xl:table-cell">
@@ -118,7 +97,7 @@ const TabelBerita = () => {
                     variant="small"
                     className="font-normal"
                   >
-                    {berita.Tanggal_Terbit}
+                    {tanggalTerbit}
                   </Typography>
                 </td>
                 <td className="p-2">
@@ -131,7 +110,7 @@ const TabelBerita = () => {
                         <MenuItem>
                           {({ active }) => (
                             <button
-                              onClick={() => tanganiKetikaSunting(berita)}
+                              onClick={() => setBukaModalSuntingBerita(true)}
                               className={`${
                                 active ? "bg-gray-700" : ""
                               } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
@@ -144,13 +123,10 @@ const TabelBerita = () => {
                         <MenuItem>
                           {({ active }) => (
                             <button
-                              onClick={() =>
-                                tanganiKetikaDiHapus(berita.id, berita.Gambar)
-                              }
+                              onClick={() => setBukaModalHapusBerita(true)}
                               className={`${
                                 active ? "bg-gray-700" : ""
                               } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
-                              disabled={sedangMemuatHapusDataBerita}
                             >
                               <TrashIcon className="h-4 w-4 mr-2" />
                               Hapus
@@ -162,33 +138,20 @@ const TabelBerita = () => {
                   </Menu>
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="5" className="p-4">
-                <Typography
-                  color="white"
-                  variant="small"
-                  className="text-center"
-                >
-                  Tidak ada berita yang tersedia.
-                </Typography>
-              </td>
-            </tr>
-          )}
+            );
+          })}
         </tbody>
       </table>
 
-      <ModalKonfirmasiHapusBerita
-        apakahTerbuka={apakahModalHapusTerbuka}
-        ketikaDitutup={() => setApakahModalHapusTerbuka(false)}
-        ketikaDikonfirmasi={tanganiKetikaDiKonfirmasi}
+      <ModalSuntingBerita
+        terbuka={bukaModalSuntingBerita}
+        tanganiTutup={setBukaModalSuntingBerita}
       />
 
-      <ModalSuntingBerita
-        terbuka={apakahModalSuntingTerbuka}
-        beritaTerpilih={beritaYangDisunting}
-        tanganiTutup={() => setApakahModalSuntingTerbuka(false)}
+      <ModalHapusBerita
+        terbuka={bukaModalHapusBerita}
+        tanganiTutup={setBukaModalHapusBerita}
+        hapusBerita={hapusBerita}
       />
     </Card>
   );

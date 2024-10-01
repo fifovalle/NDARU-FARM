@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogHeader,
@@ -13,28 +13,14 @@ import {
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-// HOOKS KAMI
-import useSuntingJasa from "@/hooks/useSuntingJasa";
+const ModalSuntingJasa = ({ terbuka, tanganiTutup }) => {
+  const [gambarJasa, setGambarJasa] = useState(null);
 
-const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaTerpilih }) => {
-  const {
-    gambarJasa,
-    namaJasa,
-    setNamaJasa,
-    hargaJasa,
-    setHargaJasa,
-    jangkaWaktuJasa,
-    setJangkaWaktuJasa,
-    deskripsiJasa,
-    setDeskripsiJasa,
-    simpanDataJasa,
-    tanganiGambarJasa,
-    sedangMemuatSuntingJasa,
-  } = useSuntingJasa(jasaTerpilih);
-
-  const tanganiKetikaDisimpan = async () => {
-    await simpanDataJasa();
-    tanganiTutup();
+  const tanganiGambarJasa = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setGambarJasa(URL.createObjectURL(file));
+    }
   };
 
   return (
@@ -60,10 +46,7 @@ const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaTerpilih }) => {
 
       <DialogHeader className="text-white">Sunting Jasa</DialogHeader>
       <DialogBody divider>
-        <form
-          className="flex flex-col gap-4"
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <form className="flex flex-col gap-4">
           {gambarJasa ? (
             <div className="flex justify-center mb-4">
               <img
@@ -99,8 +82,6 @@ const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaTerpilih }) => {
             color="white"
             label="Nama Jasa"
             className="bg-[#1a1a1a] text-white"
-            value={namaJasa}
-            onChange={(e) => setNamaJasa(e.target.value)}
           />
 
           <div className="flex flex-col md:flex-row gap-2">
@@ -109,16 +90,12 @@ const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaTerpilih }) => {
               label="Harga Jasa"
               type="number"
               className="bg-[#1a1a1a] text-white flex-1"
-              value={hargaJasa}
-              onChange={(e) => setHargaJasa(e.target.value)}
             />
 
             <Select
               label="Pilih Jangka Waktu Jasa"
               labelProps={{ className: "text-white" }}
               className="text-white flex-1"
-              value={jangkaWaktuJasa}
-              onChange={(e) => setJangkaWaktuJasa(e)}
             >
               <Option value="1">1 Bulan</Option>
               <Option value="2">2 Bulan</Option>
@@ -132,22 +109,16 @@ const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaTerpilih }) => {
             color="white"
             label="Deskripsi Jasa"
             className="bg-[#1a1a1a] text-white"
-            value={deskripsiJasa}
-            onChange={(e) => setDeskripsiJasa(e.target.value)}
           />
         </form>
       </DialogBody>
       <DialogFooter>
         <Button
-          className={`${
-            sedangMemuatSuntingJasa ? "opacity-50 cursor-not-allowed" : ""
-          }`}
           variant="gradient"
           color="dark"
-          onClick={tanganiKetikaDisimpan}
-          disabled={sedangMemuatSuntingJasa}
+          onClick={() => tanganiTutup(false)}
         >
-          {sedangMemuatSuntingJasa ? "Menyimpan..." : "Sunting Jasa"}
+          Sunting Jasa
         </Button>
       </DialogFooter>
     </Dialog>

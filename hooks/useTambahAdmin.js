@@ -12,6 +12,7 @@ export default function useTambahAdmin() {
   const [konfirmasiKataSandi, setKonfirmasiKataSandi] = useState("");
   const [nomorPonsel, setNomorPonsel] = useState("");
   const [jenisKelamin, setJenisKelamin] = useState("");
+  const [sedangMemuatTambahAdmin, setSedangMemuatTambahAdmin] = useState(false);
 
   const apakahEmailValid = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -57,6 +58,8 @@ export default function useTambahAdmin() {
       return;
     }
 
+    setSedangMemuatTambahAdmin(true);
+
     try {
       await addDoc(collection(db, "admin"), {
         Nama_Depan: namaDepan,
@@ -72,6 +75,8 @@ export default function useTambahAdmin() {
       toast.success("Data admin berhasil disimpan");
     } catch (error) {
       toast.error("Gagal menyimpan data admin: " + error.message);
+    } finally {
+      setSedangMemuatTambahAdmin(false);
     }
   };
 
@@ -93,5 +98,6 @@ export default function useTambahAdmin() {
     jenisKelamin,
     setJenisKelamin,
     simpanDataAdmin,
+    sedangMemuatTambahAdmin,
   };
 }

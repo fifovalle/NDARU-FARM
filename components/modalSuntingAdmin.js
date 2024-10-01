@@ -15,6 +15,9 @@ import { XMarkIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 // HOOKS KAMI
 import useSuntingAdmin from "@/hooks/useSuntingAdmin";
 
+// KOMPONEN KAMI
+import UiMemuat from "./uiMemuat";
+
 const ModalSuntingAdmin = ({ terbuka, tanganiTutup, adminTerpilih }) => {
   const [lihatKataSandi, setLihatKataSandi] = useState(false);
   const [lihatKonfirmasiKataSandi, setLihatKonfirmasiKataSandi] =
@@ -38,6 +41,7 @@ const ModalSuntingAdmin = ({ terbuka, tanganiTutup, adminTerpilih }) => {
     jenisKelamin,
     setJenisKelamin,
     simpanDataAdmin,
+    sedangMemuatSuntingAdmin,
   } = useSuntingAdmin(adminTerpilih);
 
   const toggleLihatKataSandi = () => setLihatKataSandi(!lihatKataSandi);
@@ -171,8 +175,18 @@ const ModalSuntingAdmin = ({ terbuka, tanganiTutup, adminTerpilih }) => {
         </form>
       </DialogBody>
       <DialogFooter>
-        <Button variant="gradient" color="dark" onClick={tanganiKetikaDisimpan}>
-          Sunting Admin
+        <Button
+          disabled={sedangMemuatSuntingAdmin}
+          variant="gradient"
+          color="dark"
+          onClick={tanganiKetikaDisimpan}
+          className={`${
+            sedangMemuatSuntingAdmin
+              ? "cursor-not-allowed opacity-50"
+              : "cursor-pointer"
+          }`}
+        >
+          {sedangMemuatSuntingAdmin ? <UiMemuat /> : "Sunting Admin"}
         </Button>
       </DialogFooter>
     </Dialog>

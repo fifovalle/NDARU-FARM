@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
 // KOMPONEN KAMI
 import Sidebar from "@/components/sidebar";
 import Navbar from "@/components/navbar";
@@ -20,7 +18,6 @@ export default function DataJasa() {
 
   return (
     <section className="flex flex-col md:flex-row min-h-screen bg-[#0a0a0a] font-poppins">
-      <ToastContainer />
       {sidebarTerbuka && (
         <div ref={refSidebar} className="md:hidden absolute z-50">
           <Sidebar />

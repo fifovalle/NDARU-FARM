@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogHeader,
@@ -13,27 +13,14 @@ import {
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-// HOOKS KAMI
-import useTambahBerita from "@/hooks/useTambahBerita";
-
 const ModalTambahBerita = ({ terbuka, tanganiTutup }) => {
-  const {
-    gambarBerita,
-    judulBerita,
-    setJudulBerita,
-    tanggalTerbit,
-    setTanggalTerbit,
-    kategoriBerita,
-    setKategoriBerita,
-    deskripsiBerita,
-    setDeskripsiBerita,
-    simpanDataBerita,
-    tanganiGambarBerita,
-  } = useTambahBerita();
+  const [gambarBerita, setGambarBerita] = useState(null);
 
-  const tanganiKetikaDisimpan = async () => {
-    await simpanDataBerita();
-    tanganiTutup();
+  const tanganiGambarBerita = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setGambarBerita(URL.createObjectURL(file));
+    }
   };
 
   return (
@@ -95,8 +82,6 @@ const ModalTambahBerita = ({ terbuka, tanganiTutup }) => {
             color="white"
             label="Judul Berita"
             className="bg-[#1a1a1a] text-white"
-            value={judulBerita}
-            onChange={(e) => setJudulBerita(e.target.value)}
           />
 
           <div className="flex flex-col md:flex-row gap-2">
@@ -105,16 +90,12 @@ const ModalTambahBerita = ({ terbuka, tanganiTutup }) => {
               label="Tanggal Terbit Berita"
               type="date"
               className="bg-[#1a1a1a] text-white"
-              value={tanggalTerbit}
-              onChange={(e) => setTanggalTerbit(e.target.value)}
             />
 
             <Select
               label="Pilih Kategori Berita"
               labelProps={{ className: "text-white" }}
               className="text-white flex-1"
-              value={kategoriBerita}
-              onChange={(value) => setKategoriBerita(value)}
             >
               <Option value="Buah">Buah</Option>
               <Option value="Sayuran">Sayuran</Option>
@@ -125,13 +106,15 @@ const ModalTambahBerita = ({ terbuka, tanganiTutup }) => {
             color="white"
             label="Deskripsi Berita"
             className="bg-[#1a1a1a] text-white"
-            value={deskripsiBerita}
-            onChange={(e) => setDeskripsiBerita(e.target.value)}
           />
         </form>
       </DialogBody>
       <DialogFooter>
-        <Button variant="gradient" color="dark" onClick={tanganiKetikaDisimpan}>
+        <Button
+          variant="gradient"
+          color="dark"
+          onClick={() => tanganiTutup(false)}
+        >
           Tambah Berita
         </Button>
       </DialogFooter>

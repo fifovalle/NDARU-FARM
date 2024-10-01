@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   EllipsisVerticalIcon,
   PencilIcon,
@@ -5,6 +6,10 @@ import {
 } from "@heroicons/react/24/solid";
 import { Card, Typography } from "@material-tailwind/react";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
+
+// KOMPONEN KAMI
+import ModalSuntingSaranaPertanian from "@/components/modalSuntingSaranaPertanian";
+import ModalHapusSaranaPertanian from "@/components/modalHapusSaranaPertanian";
 
 const konten = [
   {
@@ -17,6 +22,15 @@ const konten = [
 ];
 
 const TabelSaranaPertanian = () => {
+  const [bukaModalSuntingSaranaPertanian, setBukaModalSuntingSaranaPertanian] =
+    useState(false);
+  const [bukaModalHapusSaranaPertanian, setBukaModalHapusSaranaPertanian] =
+    useState(false);
+
+  const hapusSaranaPertanian = () => {
+    setBukaModalHapusSaranaPertanian(false);
+  };
+
   return (
     <Card className="mt-10 bg-gradient-to-l from-[#121212] to-[#0a0a0a] px-0 lg:px-10 md:px-10 sm:px-10">
       <table className="w-full min-w-max bg-[#212121] rounded-lg table-auto text-left">
@@ -113,6 +127,9 @@ const TabelSaranaPertanian = () => {
                         <MenuItem>
                           {({ active }) => (
                             <button
+                              onClick={() =>
+                                setBukaModalSuntingSaranaPertanian(true)
+                              }
                               className={`${
                                 active ? "bg-gray-700" : ""
                               } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
@@ -125,6 +142,9 @@ const TabelSaranaPertanian = () => {
                         <MenuItem>
                           {({ active }) => (
                             <button
+                              onClick={() =>
+                                setBukaModalHapusSaranaPertanian(true)
+                              }
                               className={`${
                                 active ? "bg-gray-700" : ""
                               } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
@@ -143,6 +163,17 @@ const TabelSaranaPertanian = () => {
           })}
         </tbody>
       </table>
+
+      <ModalSuntingSaranaPertanian
+        terbuka={bukaModalSuntingSaranaPertanian}
+        tanganiTutup={() => setBukaModalSuntingSaranaPertanian(false)}
+      />
+
+      <ModalHapusSaranaPertanian
+        terbuka={bukaModalHapusSaranaPertanian}
+        tanganiTutup={() => setBukaModalHapusSaranaPertanian(false)}
+        hapusSaranaPertanian={hapusSaranaPertanian}
+      />
     </Card>
   );
 };

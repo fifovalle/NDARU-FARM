@@ -6,9 +6,9 @@ import { auth, provider } from "@/lib/firebaseConfig";
 import { toast } from "react-toastify";
 
 export const useMasukDenganGoogle = () => {
+  const pengarah = useRouter();
   const [sedangMemuatMasukDenganGoogle, setSedangMemuatMasukDenganGoogle] =
     useState(false);
-  const pengarah = useRouter();
 
   const masukDenganGoogle = async () => {
     setSedangMemuatMasukDenganGoogle(true);

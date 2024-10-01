@@ -13,13 +13,13 @@ import {
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-const ModalSuntingSayuran = ({ terbuka, tanganiTutup }) => {
-  const [gambarSayuran, setGambarSayuran] = useState(null);
+const ModalSuntingSaranaPertanian = ({ terbuka, tanganiTutup }) => {
+  const [gambarSaranaPertanian, setGambarSaranaPertanian] = useState(null);
 
-  const tanganiGambarSayuran = (event) => {
+  const tanganiGambarSaranaPertanian = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setGambarSayuran(URL.createObjectURL(file));
+      setGambarSaranaPertanian(URL.createObjectURL(file));
     }
   };
 
@@ -44,13 +44,15 @@ const ModalSuntingSayuran = ({ terbuka, tanganiTutup }) => {
         </IconButton>
       </div>
 
-      <DialogHeader className="text-white">Sunting Sayuran</DialogHeader>
+      <DialogHeader className="text-white">
+        Sunting Sarana Pertanian
+      </DialogHeader>
       <DialogBody divider>
         <form className="flex flex-col gap-4">
-          {gambarSayuran ? (
+          {gambarSaranaPertanian ? (
             <div className="flex justify-center mb-4">
               <img
-                src={gambarSayuran}
+                src={gambarSaranaPertanian}
                 alt="Pratinjau Gambar"
                 className="w-52 h-52 object-cover rounded-lg border border-gray-300"
               />
@@ -67,7 +69,7 @@ const ModalSuntingSayuran = ({ terbuka, tanganiTutup }) => {
             type="file"
             accept="image/*"
             id="unggah-gambar"
-            onChange={tanganiGambarSayuran}
+            onChange={tanganiGambarSaranaPertanian}
             style={{ display: "none" }}
           />
 
@@ -75,38 +77,36 @@ const ModalSuntingSayuran = ({ terbuka, tanganiTutup }) => {
             htmlFor="unggah-gambar"
             className="flex items-center justify-center bg-[#1a1a1a] text-white p-3 rounded-lg cursor-pointer"
           >
-            <span className="mr-3">Pilih Gambar Sayuran</span>
+            <span className="mr-3">Pilih Gambar Sarana Pertanian</span>
           </label>
 
           <Input
             color="white"
-            label="Nama Sayuran"
+            label="Nama Sarana Pertanian"
             className="bg-[#1a1a1a] text-white"
           />
 
           <div className="flex flex-col md:flex-row gap-2">
             <Input
               color="white"
-              label="Harga Sayuran"
+              label="Harga Sarana Pertanian"
               type="number"
               className="bg-[#1a1a1a] text-white flex-1"
             />
 
             <Select
-              label="Pilih Berat Sayuran"
+              label="Pilih Jenis Sarana Pertanian"
               labelProps={{ className: "text-white" }}
               className="text-white flex-1"
             >
-              <Option value="1">1 Kg</Option>
-              <Option value="2">2 Kg</Option>
-              <Option value="3">3 Kg</Option>
-              <Option value="4">4 Kg</Option>
-              <Option value="5">5 Kg</Option>
+              <Option value="benih">Benih</Option>
+              <Option value="obat-obatan">Obat-obatan</Option>
+              <Option value="pupuk">Pupuk</Option>
             </Select>
 
             <Input
               color="white"
-              label="Stok Sayuran"
+              label="Stok Sarana Pertanian"
               type="number"
               className="bg-[#1a1a1a] text-white flex-1"
             />
@@ -114,7 +114,7 @@ const ModalSuntingSayuran = ({ terbuka, tanganiTutup }) => {
 
           <Textarea
             color="white"
-            label="Deskripsi Sayuran"
+            label="Deskripsi Sarana Pertanian"
             className="bg-[#1a1a1a] text-white"
           />
         </form>
@@ -125,11 +125,11 @@ const ModalSuntingSayuran = ({ terbuka, tanganiTutup }) => {
           color="dark"
           onClick={() => tanganiTutup(false)}
         >
-          Sunting Sayuran
+          Sunting Sarana Pertanian
         </Button>
       </DialogFooter>
     </Dialog>
   );
 };
 
-export default ModalSuntingSayuran;
+export default ModalSuntingSaranaPertanian;

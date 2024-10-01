@@ -12,8 +12,10 @@ import {
 } from "@material-tailwind/react";
 import { XMarkIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
-// HOOKS KAMI
+// PENGAIT KAMI
 import useTambahAdmin from "@/hooks/useTambahAdmin";
+// KOMPONEN KAMI
+import UiMemuat from "@/components/uiMemuat";
 
 const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
   const [lihatKataSandi, setLihatKataSandi] = useState(false);
@@ -38,6 +40,7 @@ const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
     jenisKelamin,
     setJenisKelamin,
     simpanDataAdmin,
+    sedangMemuatTambahAdmin,
   } = useTambahAdmin();
 
   const toggleLihatKataSandi = () => setLihatKataSandi(!lihatKataSandi);
@@ -171,8 +174,13 @@ const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
         </form>
       </DialogBody>
       <DialogFooter>
-        <Button variant="gradient" color="dark" onClick={tanganiKetikaDisimpan}>
-          Tambah Admin
+        <Button
+          variant="gradient"
+          color="dark"
+          onClick={tanganiKetikaDisimpan}
+          disabled={sedangMemuatTambahAdmin}
+        >
+          {sedangMemuatTambahAdmin ? <UiMemuat /> : "Simpan Admin"}
         </Button>
       </DialogFooter>
     </Dialog>
