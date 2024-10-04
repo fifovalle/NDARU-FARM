@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Dialog,
   DialogHeader,
@@ -12,15 +12,30 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+// PENGAIT KAMI
+import useTambahJasa from "@/hooks/useTambahJasa";
+// KOMPONEN KAMI
+import Memuat from "@/components/memuat";
 
 const ModalTambahJasa = ({ terbuka, tanganiTutup }) => {
-  const [gambarJasa, setGambarJasa] = useState(null);
+  const {
+    nama,
+    setNama,
+    harga,
+    setHarga,
+    jangkaWaktu,
+    setJangkaWaktu,
+    deskripsi,
+    setDeskripsi,
+    gambarJasa,
+    tanganiGambarJasa,
+    tambahJasa,
+    sedangMemuatTambahJasa,
+  } = useTambahJasa();
 
-  const tanganiGambarJasa = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setGambarJasa(URL.createObjectURL(file));
-    }
+  const tanganiTambahJasa = async () => {
+    await tambahJasa();
+    tanganiTutup(false);
   };
 
   return (
@@ -50,14 +65,14 @@ const ModalTambahJasa = ({ terbuka, tanganiTutup }) => {
           {gambarJasa ? (
             <div className="flex justify-center mb-4">
               <img
-                src={gambarJasa}
+                src={URL.createObjectURL(gambarJasa)}
                 alt="Pratinjau Gambar"
-                className="w-52 h-52 object-cover rounded-lg border border-gray-300"
+                className="w-full h-96 object-cover rounded-lg border border-gray-300"
               />
             </div>
           ) : (
             <div className="flex justify-center mb-4">
-              <div className="w-52 h-52 bg-gray-700 rounded-lg flex items-center justify-center text-white">
+              <div className="w-full h-96 bg-gray-700 rounded-lg flex items-center justify-center text-white">
                 Pratinjau Gambar
               </div>
             </div>
@@ -82,6 +97,8 @@ const ModalTambahJasa = ({ terbuka, tanganiTutup }) => {
             color="white"
             label="Nama Jasa"
             className="bg-[#1a1a1a] text-white"
+            value={nama}
+            onChange={(e) => setNama(e.target.value)}
           />
 
           <div className="flex flex-col md:flex-row gap-2">
@@ -90,12 +107,16 @@ const ModalTambahJasa = ({ terbuka, tanganiTutup }) => {
               label="Harga Jasa"
               type="number"
               className="bg-[#1a1a1a] text-white flex-1"
+              value={harga}
+              onChange={(e) => setHarga(Number(e.target.value))}
             />
 
             <Select
               label="Pilih Jangka Waktu Jasa"
               labelProps={{ className: "text-white" }}
               className="text-white flex-1"
+              value={jangkaWaktu}
+              onChange={(value) => setJangkaWaktu(value)}
             >
               <Option value="1">1 Bulan</Option>
               <Option value="2">2 Bulan</Option>
@@ -109,6 +130,8 @@ const ModalTambahJasa = ({ terbuka, tanganiTutup }) => {
             color="white"
             label="Deskripsi Jasa"
             className="bg-[#1a1a1a] text-white"
+            value={deskripsi}
+            onChange={(e) => setDeskripsi(e.target.value)}
           />
         </form>
       </DialogBody>
@@ -116,9 +139,10 @@ const ModalTambahJasa = ({ terbuka, tanganiTutup }) => {
         <Button
           variant="gradient"
           color="dark"
-          onClick={() => tanganiTutup(false)}
+          onClick={tanganiTambahJasa}
+          disabled={sedangMemuatTambahJasa}
         >
-          Tambah Jasa
+          {sedangMemuatTambahJasa ? <Memuat /> : "Tambah Jasa"}
         </Button>
       </DialogFooter>
     </Dialog>

@@ -52,12 +52,12 @@ const ModalSuntingBerita = ({ terbuka, tanganiTutup, beritaYangTerpilih }) => {
               <img
                 src={gambarBerita}
                 alt="Pratinjau Gambar"
-                className="w-52 h-52 object-cover rounded-lg border border-gray-300"
+                className="w-full h-96 object-cover rounded-lg border border-gray-300"
               />
             </div>
           ) : (
             <div className="flex justify-center mb-4">
-              <div className="w-52 h-52 bg-gray-700 rounded-lg flex items-center justify-center text-white">
+              <div className="w-full h-96 bg-gray-700 rounded-lg flex items-center justify-center text-white">
                 Pratinjau Gambar
               </div>
             </div>

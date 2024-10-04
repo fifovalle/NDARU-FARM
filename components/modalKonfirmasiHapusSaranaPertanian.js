@@ -12,8 +12,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 const ModalKonfirmasiHapusSaranaPertanian = ({
   terbuka,
   tanganiTutup,
-  tanganiHapus,
-  saranaPertanianYangDipilih,
+  saranaPertanianYangTerpilih,
 }) => {
   return (
     <Dialog
@@ -42,13 +41,13 @@ const ModalKonfirmasiHapusSaranaPertanian = ({
       <DialogBody className="text-white">
         <p>
           Apakah Anda yakin ingin menghapus sarana pertanian{" "}
-          <strong>{saranaPertanianYangDipilih}</strong>? Tindakan ini tidak
-          dapat dibatalkan.
+          <strong className="font-bold">{saranaPertanianYangTerpilih}</strong>?
+          Tindakan ini tidak dapat dibatalkan.
         </p>
       </DialogBody>
 
       <DialogFooter className="space-x-4">
-        <Button variant="gradient" color="red" onClick={tanganiHapus}>
+        <Button variant="gradient" color="red">
           Hapus
         </Button>
       </DialogFooter>

@@ -12,8 +12,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 const ModalKonfirmasiHapusPengguna = ({
   terbuka,
   tanganiTutup,
-  tanganiHapus,
-  penggunaYangDipilih,
+  penggunaYangTerpilih,
 }) => {
   return (
     <Dialog
@@ -42,13 +41,13 @@ const ModalKonfirmasiHapusPengguna = ({
       <DialogBody className="text-white">
         <p>
           Apakah Anda yakin ingin menghapus pengguna{" "}
-          <strong>{penggunaYangDipilih}</strong>? Tindakan ini tidak dapat
-          dibatalkan.
+          <strong className="font-bold">{penggunaYangTerpilih}</strong>?
+          Tindakan ini tidak dapat dibatalkan.
         </p>
       </DialogBody>
 
       <DialogFooter className="space-x-4">
-        <Button variant="gradient" color="red" onClick={tanganiHapus}>
+        <Button variant="gradient" color="red">
           Hapus
         </Button>
       </DialogFooter>

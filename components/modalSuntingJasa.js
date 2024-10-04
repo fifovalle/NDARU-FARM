@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Dialog,
   DialogHeader,
@@ -12,16 +12,25 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+// PENGAIT KAMI
+import useSuntingJasa from "@/hooks/useSuntingJasa";
+import Memuat from "@/components/memuat";
 
 const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaYangTerpilih }) => {
-  const [gambarJasa, setGambarJasa] = useState(null);
-
-  const tanganiGambarJasa = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setGambarJasa(URL.createObjectURL(file));
-    }
-  };
+  const {
+    nama,
+    setNama,
+    harga,
+    setHarga,
+    jangkaWaktu,
+    setJangkaWaktu,
+    deskripsi,
+    setDeskripsi,
+    gambarJasa,
+    tanganiGambarJasa,
+    sedangMemuatSuntingJasa,
+    suntingJasa,
+  } = useSuntingJasa(jasaYangTerpilih);
 
   return (
     <Dialog
@@ -50,14 +59,18 @@ const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaYangTerpilih }) => {
           {gambarJasa ? (
             <div className="flex justify-center mb-4">
               <img
-                src={gambarJasa}
                 alt="Pratinjau Gambar"
-                className="w-52 h-52 object-cover rounded-lg border border-gray-300"
+                src={
+                  typeof gambarJasa === "string"
+                    ? gambarJasa
+                    : URL.createObjectURL(gambarJasa)
+                }
+                className="w-full h-96 object-cover rounded-lg border border-gray-300"
               />
             </div>
           ) : (
             <div className="flex justify-center mb-4">
-              <div className="w-52 h-52 bg-gray-700 rounded-lg flex items-center justify-center text-white">
+              <div className="w-full h-96 bg-gray-700 rounded-lg flex items-center justify-center text-white">
                 Pratinjau Gambar
               </div>
             </div>
@@ -81,6 +94,8 @@ const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaYangTerpilih }) => {
           <Input
             color="white"
             label="Nama Jasa"
+            value={nama || ""}
+            onChange={(e) => setNama(e.target.value)}
             className="bg-[#1a1a1a] text-white"
           />
 
@@ -89,6 +104,8 @@ const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaYangTerpilih }) => {
               color="white"
               label="Harga Jasa"
               type="number"
+              value={harga || 0}
+              onChange={(e) => setHarga(e.target.value)}
               className="bg-[#1a1a1a] text-white flex-1"
             />
 
@@ -96,6 +113,8 @@ const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaYangTerpilih }) => {
               label="Pilih Jangka Waktu Jasa"
               labelProps={{ className: "text-white" }}
               className="text-white flex-1"
+              value={jangkaWaktu || "1"}
+              onChange={(value) => setJangkaWaktu(value)}
             >
               <Option value="1">1 Bulan</Option>
               <Option value="2">2 Bulan</Option>
@@ -108,6 +127,8 @@ const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaYangTerpilih }) => {
           <Textarea
             color="white"
             label="Deskripsi Jasa"
+            value={deskripsi || ""}
+            onChange={(e) => setDeskripsi(e.target.value)}
             className="bg-[#1a1a1a] text-white"
           />
         </form>
@@ -116,9 +137,13 @@ const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaYangTerpilih }) => {
         <Button
           variant="gradient"
           color="dark"
-          onClick={() => tanganiTutup(false)}
+          onClick={async () => {
+            await suntingJasa(jasaYangTerpilih);
+            tanganiTutup(false);
+          }}
+          disabled={sedangMemuatSuntingJasa}
         >
-          Sunting Jasa
+          {sedangMemuatSuntingJasa ? <Memuat /> : "Sunting Jasa"}
         </Button>
       </DialogFooter>
     </Dialog>

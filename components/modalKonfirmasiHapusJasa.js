@@ -8,13 +8,18 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+// PENGAIT KAMI
+import useHapusJasa from "@/hooks/useHapusJasa";
+// KOMPONEN KAMI
+import Memuat from "@/components/memuat";
 
 const ModalKonfirmasiHapusJasa = ({
   terbuka,
   tanganiTutup,
-  tanganiHapus,
-  jasaYangDipilih,
+  jasaYangTerpilih,
 }) => {
+  const { hapusJasa, sedangMemuatHapusJasa } = useHapusJasa(jasaYangTerpilih);
+
   return (
     <Dialog
       open={terbuka}
@@ -40,14 +45,22 @@ const ModalKonfirmasiHapusJasa = ({
       <DialogBody className="text-white">
         <p>
           Apakah Anda yakin ingin menghapus jasa{" "}
-          <strong>{jasaYangDipilih}</strong>? Tindakan ini tidak dapat
-          dibatalkan.
+          <strong className="font-bold">{jasaYangTerpilih}</strong>? Tindakan
+          ini tidak dapat dibatalkan.
         </p>
       </DialogBody>
 
       <DialogFooter className="space-x-4">
-        <Button variant="gradient" color="red" onClick={tanganiHapus}>
-          Hapus
+        <Button
+          variant="gradient"
+          color="red"
+          onClick={async () => {
+            await hapusJasa(jasaYangTerpilih);
+            tanganiTutup(false);
+          }}
+          disabled={sedangMemuatHapusJasa}
+        >
+          {sedangMemuatHapusJasa ? <Memuat /> : "Hapus"}
         </Button>
       </DialogFooter>
     </Dialog>
