@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Dialog,
   DialogHeader,
@@ -12,16 +12,28 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+// PENGAIT KAMI
+import useTambahSayuran from "@/hooks/useTambahSayuran";
+// KOMPONEN KAMI
+import Memuat from "@/components/memuat";
 
 const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
-  const [gambarSayuran, setGambarSayuran] = useState(null);
-
-  const tanganiGambarSayuran = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setGambarSayuran(URL.createObjectURL(file));
-    }
-  };
+  const {
+    nama,
+    setNama,
+    harga,
+    setHarga,
+    berat,
+    setBerat,
+    stok,
+    setStok,
+    deskripsi,
+    setDeskripsi,
+    gambarSayuran,
+    tanganiGambarSayuran,
+    sedangMemuatTambahSayuran,
+    tambahSayuran,
+  } = useTambahSayuran();
 
   return (
     <Dialog
@@ -50,14 +62,14 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
           {gambarSayuran ? (
             <div className="flex justify-center mb-4">
               <img
-                src={gambarSayuran}
+                src={URL.createObjectURL(gambarSayuran)}
                 alt="Pratinjau Gambar"
-                className="w-full h-96 object-cover rounded-lg border border-gray-300"
+                className="w-96 h-56 object-cover rounded-lg border border-gray-300"
               />
             </div>
           ) : (
             <div className="flex justify-center mb-4">
-              <div className="w-full h-96 bg-gray-700 rounded-lg flex items-center justify-center text-white">
+              <div className="w-96 h-56 bg-gray-700 rounded-lg flex items-center justify-center text-white">
                 Pratinjau Gambar
               </div>
             </div>
@@ -82,6 +94,8 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
             color="white"
             label="Nama Sayuran"
             className="bg-[#1a1a1a] text-white"
+            value={nama}
+            onChange={(e) => setNama(e.target.value)}
           />
 
           <div className="flex flex-col md:flex-row gap-2">
@@ -90,12 +104,16 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
               label="Harga Sayuran"
               type="number"
               className="bg-[#1a1a1a] text-white flex-1"
+              value={harga}
+              onChange={(e) => setHarga(Number(e.target.value))}
             />
 
             <Select
               label="Pilih Berat Sayuran"
               labelProps={{ className: "text-white" }}
               className="text-white flex-1"
+              value={berat}
+              onChange={(value) => setBerat(value)}
             >
               <Option value="1">1 Kg</Option>
               <Option value="2">2 Kg</Option>
@@ -109,6 +127,8 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
               label="Stok Sayuran"
               type="number"
               className="bg-[#1a1a1a] text-white flex-1"
+              value={stok}
+              onChange={(e) => setStok(Number(e.target.value))}
             />
           </div>
 
@@ -116,6 +136,8 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
             color="white"
             label="Deskripsi Sayuran"
             className="bg-[#1a1a1a] text-white"
+            value={deskripsi}
+            onChange={(e) => setDeskripsi(e.target.value)}
           />
         </form>
       </DialogBody>
@@ -123,9 +145,13 @@ const ModalTambahSayuran = ({ terbuka, tanganiTutup }) => {
         <Button
           variant="gradient"
           color="dark"
-          onClick={() => tanganiTutup(false)}
+          onClick={async () => {
+            await tambahSayuran();
+            tanganiTutup(false);
+          }}
+          disabled={sedangMemuatTambahSayuran}
         >
-          Tambah Sayuran
+          {sedangMemuatTambahSayuran ? <Memuat /> : "Tambah Sayuran"}
         </Button>
       </DialogFooter>
     </Dialog>

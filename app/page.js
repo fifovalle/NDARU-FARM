@@ -4,7 +4,12 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook, FaEye, FaEyeSlash } from "react-icons/fa";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// PENGAIT KAMI
+import { useMasukDenganGoogle } from "@/hooks/useMasukDenganGoogle";
+// KOMPONEN KAMI
+import Memuat from "@/components/memuat";
 export default function Index() {
   const vektor1 = require("@/assets/image/vektor1.png");
   const pengarah = useRouter();
@@ -12,9 +17,12 @@ export default function Index() {
   const [namaPengguna, setNamaPengguna] = useState(false);
   const [kataSandi, setKataSandi] = useState(false);
   const [lihatKataSandi, setLihatKataSandi] = useState(false);
+  const { masukDenganGoogle, sedangMemuatMasukDenganGoogle } =
+    useMasukDenganGoogle();
 
   return (
     <section className="flex justify-center items-center min-h-screen bg-[#0A0A0A] px-4 font-poppins">
+      <ToastContainer />
       <div className="w-full sm:w-11/12 lg:w-3/4 bg-[#121212] text-white rounded-lg shadow-2xl overflow-hidden transition transform hover:scale-105 hover:shadow-2xl duration-500">
         <div className="grid lg:grid-cols-2">
           <div className="p-6 sm:p-10 flex flex-col justify-center">
@@ -22,18 +30,23 @@ export default function Index() {
               Ndaru Farm
             </h1>
             <h2 className="text-lg sm:text-xl font-semibold text-gray-300 mb-2 sm:mb-4">
-              Selamat Datang, Nama Admin!
+              Selamat Datang
             </h2>
             <p className="text-xs sm:text-sm text-gray-400 font-medium mb-6 sm:mb-10">
               Lanjutkan dengan Google, Facebook, atau masukkan identitas Anda.
             </p>
             <div className="grid grid-cols-2 gap-2 sm:gap-4 mb-6 sm:mb-8">
               <button
-                onClick={() => pengarah.push("/beranda")}
-                className="border border-green-400 flex items-center justify-center rounded-lg p-2 sm:p-3 font-semibold transition duration-300 hover:bg-green-800 hover:text-white shadow-lg"
+                onClick={() => masukDenganGoogle()}
+                disabled={sedangMemuatMasukDenganGoogle}
+                className={`border border-green-400 flex items-center justify-center rounded-lg p-2 sm:p-3 font-semibold transition duration-300 hover:bg-green-800 hover:text-white shadow-lg ${
+                  sedangMemuatMasukDenganGoogle
+                    ? "opacity-50 cursor-not-allowed"
+                    : "opacity-100 cursor-pointer"
+                }`}
               >
                 <FcGoogle className="mr-2 text-xl" />
-                Google
+                {sedangMemuatMasukDenganGoogle ? <Memuat /> : "Google"}
               </button>
               <button className="border border-green-400 flex items-center justify-center rounded-lg p-2 sm:p-3 font-semibold transition duration-300 hover:bg-green-800 hover:text-white shadow-lg">
                 <FaFacebook className="mr-2 text-xl" />

@@ -27,5 +27,26 @@ export default function useTampilkanJasa() {
     return () => ambilJasa();
   }, [firestore]);
 
-  return { tampilkanDataJasa, sedangMemuatTampilkanDataJasa };
+  const hitungJasaBerdasarkanTanggal = (tanggal) => {
+    const tanggalFilter = new Date(tanggal).setHours(0, 0, 0, 0);
+    const tanggalNext = new Date(tanggal).setHours(23, 59, 59, 999);
+
+    const hitung = tampilkanDataJasa.filter((jasa) => {
+      const tanggalPembuatan = jasa.Tanggal_Dibuat
+        ? jasa.Tanggal_Dibuat.toDate()
+        : new Date(jasa.Tanggal_Dibuat);
+
+      return (
+        tanggalPembuatan >= tanggalFilter && tanggalPembuatan <= tanggalNext
+      );
+    }).length;
+
+    return hitung;
+  };
+
+  return {
+    tampilkanDataJasa,
+    hitungJasaBerdasarkanTanggal,
+    sedangMemuatTampilkanDataJasa,
+  };
 }

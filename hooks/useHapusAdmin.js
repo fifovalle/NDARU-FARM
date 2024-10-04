@@ -4,15 +4,15 @@ import { doc, deleteDoc, getDoc } from "firebase/firestore";
 import { ref, deleteObject } from "firebase/storage";
 import { db, storage } from "@/lib/firebaseConfig";
 
-export default function useHapusJasa(idJasa) {
-  const [sedangMemuatHapusJasa, setSedangMemuatHapusJasa] = useState(false);
+export default function useHapusAdmin(idAdmin) {
+  const [sedangMemuatHapusAdmin, setSedangMemuatHapusAdmin] = useState(false);
 
-  const hapusJasa = async () => {
-    setSedangMemuatHapusJasa(true);
+  const hapusAdmin = async () => {
+    setSedangMemuatHapusAdmin(true);
 
     try {
-      const jasaRef = doc(db, "jasa", idJasa);
-      const docSnap = await getDoc(jasaRef);
+      const adminRef = doc(db, "admin", idAdmin);
+      const docSnap = await getDoc(adminRef);
 
       if (docSnap.exists()) {
         const data = docSnap.data();
@@ -23,20 +23,20 @@ export default function useHapusJasa(idJasa) {
           await deleteObject(gambarRef);
         }
 
-        await deleteDoc(jasaRef);
-        toast.success("Jasa berhasil dihapus!");
+        await deleteDoc(adminRef);
+        toast.success("Admin berhasil dihapus!");
       } else {
-        toast.error("Data jasa tidak ditemukan!");
+        toast.error("Data admin tidak ditemukan!");
       }
     } catch (error) {
-      toast.error("Gagal menghapus jasa: " + error.message);
+      toast.error("Gagal menghapus admin: " + error.message);
     } finally {
-      setSedangMemuatHapusJasa(false);
+      setSedangMemuatHapusAdmin(false);
     }
   };
 
   return {
-    sedangMemuatHapusJasa,
-    hapusJasa,
+    sedangMemuatHapusAdmin,
+    hapusAdmin,
   };
 }

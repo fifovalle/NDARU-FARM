@@ -8,12 +8,19 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+// PENGAIT KAMI
+import useHapusAdmin from "@/hooks/useHapusAdmin";
+// KOMPONEN KAMI
+import Memuat from "@/components/memuat";
 
 const ModalKonfirmasiHapusAdmin = ({
   terbuka,
   tanganiTutup,
   adminYangTerpilih,
 }) => {
+  const { sedangMemuatHapusAdmin, hapusAdmin } =
+    useHapusAdmin(adminYangTerpilih);
+
   return (
     <Dialog
       open={terbuka}
@@ -45,8 +52,16 @@ const ModalKonfirmasiHapusAdmin = ({
       </DialogBody>
 
       <DialogFooter className="space-x-4">
-        <Button variant="gradient" color="red">
-          Hapus
+        <Button
+          variant="gradient"
+          color="red"
+          onClick={async () => {
+            await hapusAdmin(adminYangTerpilih);
+            tanganiTutup(false);
+          }}
+          disabled={sedangMemuatHapusAdmin}
+        >
+          {sedangMemuatHapusAdmin ? <Memuat /> : "Hapus"}
         </Button>
       </DialogFooter>
     </Dialog>

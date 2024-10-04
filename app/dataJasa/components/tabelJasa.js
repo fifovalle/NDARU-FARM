@@ -18,7 +18,7 @@ import { formatRupiah } from "@/utils/formatRupiah";
 const TabelJasa = () => {
   const [bukaModalSuntingJasa, setBukaModalSuntingJasa] = useState(false);
   const [bukaModalHapusJasa, setBukaModalHapusJasa] = useState(false);
-  const [jasaTerpilihId, setJasaTerpilihId] = useState(null);
+  const [jasaYangTerpilih, setJasaYangTerpilih] = useState(null);
 
   const { tampilkanDataJasa, sedangMemuatTampilkanDataJasa } =
     useTampilkanJasa();
@@ -123,7 +123,7 @@ const TabelJasa = () => {
                               {({ active }) => (
                                 <button
                                   onClick={() => {
-                                    setJasaTerpilihId(id);
+                                    setJasaYangTerpilih(id);
                                     setBukaModalSuntingJasa(true);
                                   }}
                                   className={`${
@@ -139,7 +139,7 @@ const TabelJasa = () => {
                               {({ active }) => (
                                 <button
                                   onClick={() => {
-                                    setJasaTerpilihId(id);
+                                    setJasaYangTerpilih(id);
                                     setBukaModalHapusJasa(true);
                                   }}
                                   className={`${
@@ -166,13 +166,13 @@ const TabelJasa = () => {
       <ModalSuntingJasa
         terbuka={bukaModalSuntingJasa}
         tanganiTutup={setBukaModalSuntingJasa}
-        jasaYangTerpilih={jasaTerpilihId}
+        jasaYangTerpilih={jasaYangTerpilih}
       />
 
       <ModalKonfirmasiHapusJasa
         terbuka={bukaModalHapusJasa}
         tanganiTutup={setBukaModalHapusJasa}
-        jasaYangTerpilih={jasaTerpilihId}
+        jasaYangTerpilih={jasaYangTerpilih}
       />
     </Card>
   );

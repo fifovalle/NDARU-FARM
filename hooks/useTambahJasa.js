@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "@/lib/firebaseConfig";
 
@@ -59,7 +59,7 @@ export default function useTambahJasa() {
 
     try {
       const gambarUnik = `${Date.now()}_${gambarJasa.name}`;
-      const storageRef = ref(storage, `Gambar-Jasa/${gambarUnik}`);
+      const storageRef = ref(storage, `Gambar_Jasa/${gambarUnik}`);
 
       await uploadBytes(storageRef, gambarJasa);
 
@@ -72,6 +72,7 @@ export default function useTambahJasa() {
         Jangka_Waktu: jangkaWaktu,
         Deskripsi: deskripsi,
         Gambar: urlGambar,
+        Tanggal_Dibuat: serverTimestamp(),
       });
 
       toast.success("Jasa berhasil ditambahkan!");

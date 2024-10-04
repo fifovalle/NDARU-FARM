@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Dialog,
   DialogHeader,
@@ -12,16 +12,26 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+// PENGAIT KAMI
+import useTambahBerita from "@/hooks/useTambahBerita";
+// KOMPONEN KAMI
+import Memuat from "@/components/memuat";
 
 const ModalTambahBerita = ({ terbuka, tanganiTutup }) => {
-  const [gambarBerita, setGambarBerita] = useState(null);
-
-  const tanganiGambarBerita = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setGambarBerita(URL.createObjectURL(file));
-    }
-  };
+  const {
+    judul,
+    setJudul,
+    tanggalTerbit,
+    setTanggalTerbit,
+    kategori,
+    setKategori,
+    deskripsi,
+    setDeskripsi,
+    gambarBerita,
+    tanganiGambarBerita,
+    sedangMemuatTambahBerita,
+    tambahBerita,
+  } = useTambahBerita();
 
   return (
     <Dialog
@@ -50,14 +60,14 @@ const ModalTambahBerita = ({ terbuka, tanganiTutup }) => {
           {gambarBerita ? (
             <div className="flex justify-center mb-4">
               <img
-                src={gambarBerita}
+                src={URL.createObjectURL(gambarBerita)}
                 alt="Pratinjau Gambar"
-                className="w-full h-96 object-cover rounded-lg border border-gray-300"
+                className="w-96 h-56 object-cover rounded-lg border border-gray-300"
               />
             </div>
           ) : (
             <div className="flex justify-center mb-4">
-              <div className="w-full h-96 bg-gray-700 rounded-lg flex items-center justify-center text-white">
+              <div className="w-96 h-56 bg-gray-700 rounded-lg flex items-center justify-center text-white">
                 Pratinjau Gambar
               </div>
             </div>
@@ -81,6 +91,8 @@ const ModalTambahBerita = ({ terbuka, tanganiTutup }) => {
           <Input
             color="white"
             label="Judul Berita"
+            value={judul}
+            onChange={(e) => setJudul(e.target.value)}
             className="bg-[#1a1a1a] text-white"
           />
 
@@ -89,12 +101,16 @@ const ModalTambahBerita = ({ terbuka, tanganiTutup }) => {
               color="white"
               label="Tanggal Terbit Berita"
               type="date"
+              value={tanggalTerbit}
+              onChange={(e) => setTanggalTerbit(e.target.value)}
               className="bg-[#1a1a1a] text-white"
             />
 
             <Select
               label="Pilih Kategori Berita"
               labelProps={{ className: "text-white" }}
+              value={kategori}
+              onChange={setKategori}
               className="text-white flex-1"
             >
               <Option value="Buah">Buah</Option>
@@ -105,6 +121,8 @@ const ModalTambahBerita = ({ terbuka, tanganiTutup }) => {
           <Textarea
             color="white"
             label="Deskripsi Berita"
+            value={deskripsi}
+            onChange={(e) => setDeskripsi(e.target.value)}
             className="bg-[#1a1a1a] text-white"
           />
         </form>
@@ -113,9 +131,13 @@ const ModalTambahBerita = ({ terbuka, tanganiTutup }) => {
         <Button
           variant="gradient"
           color="dark"
-          onClick={() => tanganiTutup(false)}
+          onClick={async () => {
+            await tambahBerita();
+            tanganiTutup(false);
+          }}
+          disabled={sedangMemuatTambahBerita}
         >
-          Tambah Berita
+          {sedangMemuatTambahBerita ? <Memuat /> : "Tambah Berita"}
         </Button>
       </DialogFooter>
     </Dialog>

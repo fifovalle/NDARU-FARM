@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Dialog,
   DialogHeader,
@@ -12,16 +12,26 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+// PENGAIT KAMI
+import useSuntingBerita from "@/hooks/useSuntingBerita";
+// KOMPONEN KAMI
+import Memuat from "@/components/memuat";
 
 const ModalSuntingBerita = ({ terbuka, tanganiTutup, beritaYangTerpilih }) => {
-  const [gambarBerita, setGambarBerita] = useState(null);
-
-  const tanganiGambarBerita = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setGambarBerita(URL.createObjectURL(file));
-    }
-  };
+  const {
+    judul,
+    setJudul,
+    tanggalTerbit,
+    setTanggalTerbit,
+    kategori,
+    setKategori,
+    deskripsi,
+    setDeskripsi,
+    gambarBerita,
+    tanganiGambarBerita,
+    sedangMemuatSuntingBerita,
+    suntingBerita,
+  } = useSuntingBerita(beritaYangTerpilih);
 
   return (
     <Dialog
@@ -50,14 +60,18 @@ const ModalSuntingBerita = ({ terbuka, tanganiTutup, beritaYangTerpilih }) => {
           {gambarBerita ? (
             <div className="flex justify-center mb-4">
               <img
-                src={gambarBerita}
                 alt="Pratinjau Gambar"
-                className="w-full h-96 object-cover rounded-lg border border-gray-300"
+                src={
+                  typeof gambarBerita === "string"
+                    ? gambarBerita
+                    : URL.createObjectURL(gambarBerita)
+                }
+                className="w-96 h-56 object-cover rounded-lg border border-gray-300"
               />
             </div>
           ) : (
             <div className="flex justify-center mb-4">
-              <div className="w-full h-96 bg-gray-700 rounded-lg flex items-center justify-center text-white">
+              <div className="w-96 h-56 bg-gray-700 rounded-lg flex items-center justify-center text-white">
                 Pratinjau Gambar
               </div>
             </div>
@@ -81,6 +95,8 @@ const ModalSuntingBerita = ({ terbuka, tanganiTutup, beritaYangTerpilih }) => {
           <Input
             color="white"
             label="Judul Berita"
+            value={judul}
+            onChange={(e) => setJudul(e.target.value)}
             className="bg-[#1a1a1a] text-white"
           />
 
@@ -89,12 +105,16 @@ const ModalSuntingBerita = ({ terbuka, tanganiTutup, beritaYangTerpilih }) => {
               color="white"
               label="Tanggal Terbit Berita"
               type="date"
+              value={tanggalTerbit}
+              onChange={(e) => setTanggalTerbit(e.target.value)}
               className="bg-[#1a1a1a] text-white"
             />
 
             <Select
               label="Pilih Kategori Berita"
               labelProps={{ className: "text-white" }}
+              value={kategori}
+              onChange={setKategori}
               className="text-white flex-1"
             >
               <Option value="Buah">Buah</Option>
@@ -105,6 +125,8 @@ const ModalSuntingBerita = ({ terbuka, tanganiTutup, beritaYangTerpilih }) => {
           <Textarea
             color="white"
             label="Deskripsi Berita"
+            value={deskripsi}
+            onChange={(e) => setDeskripsi(e.target.value)}
             className="bg-[#1a1a1a] text-white"
           />
         </form>
@@ -113,9 +135,13 @@ const ModalSuntingBerita = ({ terbuka, tanganiTutup, beritaYangTerpilih }) => {
         <Button
           variant="gradient"
           color="dark"
-          onClick={() => tanganiTutup(false)}
+          onClick={async () => {
+            await suntingBerita(beritaYangTerpilih);
+            tanganiTutup(false);
+          }}
+          disabled={sedangMemuatSuntingBerita}
         >
-          Sunting Berita
+          {sedangMemuatSuntingBerita ? <Memuat /> : "Sunting Jasa"}
         </Button>
       </DialogFooter>
     </Dialog>

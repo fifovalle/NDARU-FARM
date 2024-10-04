@@ -28,6 +28,7 @@ export default function LupaSandi() {
               <div className="relative">
                 <input
                   onFocus={() => setEmail(true)}
+                  onBlur={(e) => setEmail(e.target.value !== "")}
                   type="email"
                   className={`border border-gray-500 bg-transparent text-white rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 ${
                     email ? "pt-6" : "pt-3"

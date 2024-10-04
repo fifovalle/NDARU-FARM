@@ -9,7 +9,7 @@ import {
 } from "firebase/storage";
 import { db, storage } from "@/lib/firebaseConfig";
 
-export default function useSuntingJasa(jasaId) {
+export default function useSuntingJasa(idJasa) {
   const [gambarJasa, setGambarJasa] = useState(null);
   const [nama, setNama] = useState("");
   const [harga, setHarga] = useState();
@@ -19,7 +19,7 @@ export default function useSuntingJasa(jasaId) {
 
   const ambilDataJasa = async () => {
     try {
-      const jasaRef = doc(db, "jasa", jasaId);
+      const jasaRef = doc(db, "jasa", idJasa);
       const docSnap = await getDoc(jasaRef);
       if (docSnap.exists()) {
         const data = docSnap.data();
@@ -78,7 +78,7 @@ export default function useSuntingJasa(jasaId) {
     }
 
     try {
-      const jasaRef = doc(db, "jasa", jasaId);
+      const jasaRef = doc(db, "jasa", idJasa);
       const docSnap = await getDoc(jasaRef);
       let urlGambar;
       let gambarLama;
@@ -94,7 +94,7 @@ export default function useSuntingJasa(jasaId) {
           }
 
           const gambarUnik = `${Date.now()}_${gambarJasa.name}`;
-          const storageRef = ref(storage, `Gambar-Jasa/${gambarUnik}`);
+          const storageRef = ref(storage, `Gambar_Jasa/${gambarUnik}`);
           await uploadBytes(storageRef, gambarJasa);
           urlGambar = await getDownloadURL(storageRef);
         } else {
@@ -122,7 +122,7 @@ export default function useSuntingJasa(jasaId) {
 
   useEffect(() => {
     ambilDataJasa();
-  }, [jasaId]);
+  }, [idJasa]);
 
   return {
     nama,

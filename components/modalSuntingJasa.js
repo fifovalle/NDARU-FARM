@@ -65,12 +65,12 @@ const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaYangTerpilih }) => {
                     ? gambarJasa
                     : URL.createObjectURL(gambarJasa)
                 }
-                className="w-full h-96 object-cover rounded-lg border border-gray-300"
+                className="w-96 h-56 object-cover rounded-lg border border-gray-300"
               />
             </div>
           ) : (
             <div className="flex justify-center mb-4">
-              <div className="w-full h-96 bg-gray-700 rounded-lg flex items-center justify-center text-white">
+              <div className="w-96 h-56 bg-gray-700 rounded-lg flex items-center justify-center text-white">
                 Pratinjau Gambar
               </div>
             </div>

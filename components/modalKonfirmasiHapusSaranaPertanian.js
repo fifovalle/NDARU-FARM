@@ -8,12 +8,19 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+// PENGAIT KAMI
+import useHapusSaranaPertanian from "@/hooks/useHapusSaranaPertanian";
+// KOMPONEN KAMI
+import Memuat from "@/components/memuat";
 
 const ModalKonfirmasiHapusSaranaPertanian = ({
   terbuka,
   tanganiTutup,
   saranaPertanianYangTerpilih,
 }) => {
+  const { sedangMemuatHapusSaranaPertanian, hapusSaranaPertanian } =
+    useHapusSaranaPertanian(saranaPertanianYangTerpilih);
+
   return (
     <Dialog
       open={terbuka}
@@ -47,8 +54,16 @@ const ModalKonfirmasiHapusSaranaPertanian = ({
       </DialogBody>
 
       <DialogFooter className="space-x-4">
-        <Button variant="gradient" color="red">
-          Hapus
+        <Button
+          variant="gradient"
+          color="red"
+          onClick={async () => {
+            await hapusSaranaPertanian(saranaPertanianYangTerpilih);
+            tanganiTutup(false);
+          }}
+          disabled={sedangMemuatHapusSaranaPertanian}
+        >
+          {sedangMemuatHapusSaranaPertanian ? <Memuat /> : "Hapus"}
         </Button>
       </DialogFooter>
     </Dialog>
