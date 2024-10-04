@@ -2,7 +2,8 @@ import { useState } from "react";
 import { EllipsisVerticalIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Card, Typography } from "@material-tailwind/react";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
-import ModalHapusPengguna from "@/components/modalHapusPengguna";
+// KOMPONEN KAMI
+import ModalKonfirmasiHapusPengguna from "@/components/modalKonfirmasiHapusPengguna";
 
 const konten = [
   {
@@ -16,10 +17,6 @@ const konten = [
 
 const TabelPengguna = () => {
   const [bukaModalHapusPengguna, setBukaModalHapusPengguna] = useState(false);
-
-  const hapusPengguna = () => {
-    setBukaModalHapusPengguna(false);
-  };
 
   return (
     <Card className="mt-10 bg-gradient-to-l from-[#121212] to-[#0a0a0a] px-0 lg:px-10 md:px-10 sm:px-10">
@@ -139,10 +136,9 @@ const TabelPengguna = () => {
         </tbody>
       </table>
 
-      <ModalHapusPengguna
+      <ModalKonfirmasiHapusPengguna
         terbuka={bukaModalHapusPengguna}
         tanganiTutup={setBukaModalHapusPengguna}
-        hapusPengguna={hapusPengguna}
       />
     </Card>
   );

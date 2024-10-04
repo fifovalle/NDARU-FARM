@@ -1,14 +1,16 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Ndaru Farm Admin",
-  description: "Pertanian Indonesia",
+  title: "Ndaru Farm",
+  description: "Ndaru Farm Admin",
 };
 
-export default function RootLayout({ children }) {
+export default function TataLetakUtama({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`antialiased`} suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

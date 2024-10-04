@@ -12,45 +12,14 @@ import {
 } from "@material-tailwind/react";
 import { XMarkIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
-// PENGAIT KAMI
-import useTambahAdmin from "@/hooks/useTambahAdmin";
-// KOMPONEN KAMI
-import UiMemuat from "@/components/uiMemuat";
-
 const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
   const [lihatKataSandi, setLihatKataSandi] = useState(false);
   const [lihatKonfirmasiKataSandi, setLihatKonfirmasiKataSandi] =
     useState(false);
 
-  const {
-    namaDepan,
-    setNamaDepan,
-    namaBelakang,
-    setNamaBelakang,
-    namaPengguna,
-    setNamaPengguna,
-    email,
-    setEmail,
-    kataSandi,
-    setKataSandi,
-    konfirmasiKataSandi,
-    setKonfirmasiKataSandi,
-    nomorPonsel,
-    setNomorPonsel,
-    jenisKelamin,
-    setJenisKelamin,
-    simpanDataAdmin,
-    sedangMemuatTambahAdmin,
-  } = useTambahAdmin();
-
   const toggleLihatKataSandi = () => setLihatKataSandi(!lihatKataSandi);
   const toggleLihatKonfirmasiKataSandi = () =>
     setLihatKonfirmasiKataSandi(!lihatKonfirmasiKataSandi);
-
-  const tanganiKetikaDisimpan = async () => {
-    await simpanDataAdmin();
-    tanganiTutup();
-  };
 
   return (
     <Dialog
@@ -81,31 +50,23 @@ const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
               color="white"
               label="Nama Depan Admin"
               className="bg-[#1a1a1a] text-white"
-              value={namaDepan}
-              onChange={(e) => setNamaDepan(e.target.value)}
             />
             <Input
               color="white"
               label="Nama Belakang Admin"
               className="bg-[#1a1a1a] text-white"
-              value={namaBelakang}
-              onChange={(e) => setNamaBelakang(e.target.value)}
             />
           </div>
           <Input
             color="white"
             label="Nama Pengguna Admin"
             className="bg-[#1a1a1a] text-white"
-            value={namaPengguna}
-            onChange={(e) => setNamaPengguna(e.target.value)}
           />
           <Input
             color="white"
             label="Email Admin"
             type="email"
             className="bg-[#1a1a1a] text-white"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="relative">
@@ -114,8 +75,6 @@ const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
                 label="Kata Sandi Admin"
                 type={lihatKataSandi ? "text" : "password"}
                 className="bg-[#1a1a1a] text-white"
-                value={kataSandi}
-                onChange={(e) => setKataSandi(e.target.value)}
               />
               <div
                 className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer"
@@ -134,8 +93,6 @@ const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
                 label="Konfirmasi Kata Sandi Admin"
                 type={lihatKonfirmasiKataSandi ? "text" : "password"}
                 className="bg-[#1a1a1a] text-white"
-                value={konfirmasiKataSandi}
-                onChange={(e) => setKonfirmasiKataSandi(e.target.value)}
               />
               <div
                 className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer"
@@ -156,16 +113,12 @@ const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
                 type="tel"
                 placeholder="Nomor Ponsel Admin"
                 className="pl-12 text-white placeholder:text-white focus:ring-1 focus-within:ring-white"
-                value={nomorPonsel}
-                onChange={(e) => setNomorPonsel(e.target.value)}
               />
             </div>
             <Select
               label="Pilih Jenis Kelamin Admin"
               labelProps={{ className: "text-white" }}
               className="text-white"
-              value={jenisKelamin}
-              onChange={(value) => setJenisKelamin(value)}
             >
               <Option value="Pria">Pria</Option>
               <Option value="Wanita">Wanita</Option>
@@ -177,10 +130,9 @@ const ModalTambahAdmin = ({ terbuka, tanganiTutup }) => {
         <Button
           variant="gradient"
           color="dark"
-          onClick={tanganiKetikaDisimpan}
-          disabled={sedangMemuatTambahAdmin}
+          onClick={() => tanganiTutup(false)}
         >
-          {sedangMemuatTambahAdmin ? <UiMemuat /> : "Simpan Admin"}
+          Tambah Admin
         </Button>
       </DialogFooter>
     </Dialog>

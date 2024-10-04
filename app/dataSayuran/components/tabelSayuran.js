@@ -6,10 +6,9 @@ import {
 } from "@heroicons/react/24/solid";
 import { Card, Typography } from "@material-tailwind/react";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
-
 // KOMPONEN KAMI
 import ModalSuntingSayuran from "@/components/modalSuntingSayuran";
-import ModalHapusSayuran from "@/components/modalHapusSayuran";
+import ModalKonfirmasiHapusSayuran from "@/components/modalKonfirmasiHapusSayuran";
 
 const konten = [
   {
@@ -24,10 +23,6 @@ const konten = [
 const TabelSayuran = () => {
   const [bukaModalSuntingSayuran, setBukaModalSuntingSayuran] = useState(false);
   const [bukaModalHapusSayuran, setBukaModalHapusSayuran] = useState(false);
-
-  const hapusSayuran = () => {
-    setBukaModalHapusSayuran(false);
-  };
 
   return (
     <Card className="mt-10 bg-gradient-to-l from-[#121212] to-[#0a0a0a] px-0 lg:px-10 md:px-10 sm:px-10">
@@ -163,10 +158,9 @@ const TabelSayuran = () => {
         tanganiTutup={setBukaModalSuntingSayuran}
       />
 
-      <ModalHapusSayuran
+      <ModalKonfirmasiHapusSayuran
         terbuka={bukaModalHapusSayuran}
         tanganiTutup={setBukaModalHapusSayuran}
-        hapusSayuran={hapusSayuran}
       />
     </Card>
   );

@@ -13,7 +13,7 @@ import {
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-const ModalSuntingJasa = ({ terbuka, tanganiTutup }) => {
+const ModalSuntingJasa = ({ terbuka, tanganiTutup, jasaYangTerpilih }) => {
   const [gambarJasa, setGambarJasa] = useState(null);
 
   const tanganiGambarJasa = (event) => {

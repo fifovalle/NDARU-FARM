@@ -6,10 +6,9 @@ import {
 } from "@heroicons/react/24/solid";
 import { Card, Typography } from "@material-tailwind/react";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
-
 // KOMPONEN KAMI
 import ModalSuntingSaranaPertanian from "@/components/modalSuntingSaranaPertanian";
-import ModalHapusSaranaPertanian from "@/components/modalHapusSaranaPertanian";
+import ModalKonfirmasiHapusSaranaPertanian from "@/components/modalKonfirmasiHapusSaranaPertanian";
 
 const konten = [
   {
@@ -26,10 +25,6 @@ const TabelSaranaPertanian = () => {
     useState(false);
   const [bukaModalHapusSaranaPertanian, setBukaModalHapusSaranaPertanian] =
     useState(false);
-
-  const hapusSaranaPertanian = () => {
-    setBukaModalHapusSaranaPertanian(false);
-  };
 
   return (
     <Card className="mt-10 bg-gradient-to-l from-[#121212] to-[#0a0a0a] px-0 lg:px-10 md:px-10 sm:px-10">
@@ -166,13 +161,12 @@ const TabelSaranaPertanian = () => {
 
       <ModalSuntingSaranaPertanian
         terbuka={bukaModalSuntingSaranaPertanian}
-        tanganiTutup={() => setBukaModalSuntingSaranaPertanian(false)}
+        tanganiTutup={setBukaModalSuntingSaranaPertanian}
       />
 
-      <ModalHapusSaranaPertanian
+      <ModalKonfirmasiHapusSaranaPertanian
         terbuka={bukaModalHapusSaranaPertanian}
-        tanganiTutup={() => setBukaModalHapusSaranaPertanian(false)}
-        hapusSaranaPertanian={hapusSaranaPertanian}
+        tanganiTutup={setBukaModalHapusSaranaPertanian}
       />
     </Card>
   );

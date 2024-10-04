@@ -6,10 +6,9 @@ import {
 } from "@heroicons/react/24/solid";
 import { Card, Typography } from "@material-tailwind/react";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
-
 // KOMPONEN KAMI
 import ModalSuntingBerita from "@/components/modalSuntingBerita";
-import ModalHapusBerita from "@/components/modalHapusBerita";
+import ModalKonfirmasiHapusBerita from "@/components/modalKonfirmasiHapusBerita";
 
 const konten = [
   {
@@ -23,10 +22,6 @@ const konten = [
 const TabelBerita = () => {
   const [bukaModalSuntingBerita, setBukaModalSuntingBerita] = useState(false);
   const [bukaModalHapusBerita, setBukaModalHapusBerita] = useState(false);
-
-  const hapusBerita = () => {
-    setBukaModalHapusBerita(false);
-  };
 
   return (
     <Card className="mt-10 bg-gradient-to-l from-[#121212] to-[#0a0a0a] px-0 lg:px-10 md:px-10 sm:px-10">
@@ -148,10 +143,9 @@ const TabelBerita = () => {
         tanganiTutup={setBukaModalSuntingBerita}
       />
 
-      <ModalHapusBerita
+      <ModalKonfirmasiHapusBerita
         terbuka={bukaModalHapusBerita}
         tanganiTutup={setBukaModalHapusBerita}
-        hapusBerita={hapusBerita}
       />
     </Card>
   );
