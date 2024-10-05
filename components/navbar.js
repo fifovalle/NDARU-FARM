@@ -19,8 +19,10 @@ import {
   UserPlusIcon,
   PlusIcon,
 } from "@heroicons/react/24/solid";
-import { FaSignOutAlt } from "react-icons/fa";
+// PENGAIT KAMI
+import useKeluar from "@/hooks/useKeluar";
 // KOMPONEN KAMI
+import Memuat from "@/components/memuat";
 import ModalTambahAdmin from "@/components/modalTambahAdmin";
 import ModalTambahSayuran from "@/components/modalTambahSayuran";
 import ModalTambahJasa from "@/components/modalTambahJasa";
@@ -35,6 +37,7 @@ const Napbar = ({ gambar, toggleSidebar }) => {
   const [terbukaModalTambahJasa, setTerbukaModalTambahJasa] = useState(false);
   const [terbukaModalTambahBerita, setTerbukaModalTambahBerita] =
     useState(false);
+  const { keluar, sedangMemuatKeluar } = useKeluar();
   const [
     terbukaModalTambahSaranaPertanian,
     setTerbukaModalTambahSaranaPertanian,
@@ -145,9 +148,13 @@ const Napbar = ({ gambar, toggleSidebar }) => {
               </MenuItem>
 
               <div className="border-t border-gray-600 my-2" />
-              <MenuItem className="text-white flex items-center gap-2 hover:bg-gray-700 transition duration-300 rounded-lg p-2">
-                <FaSignOutAlt className="h-5 w-5 text-[#e53170]" />
-                Keluar
+              <MenuItem
+                onClick={async () => {
+                  await keluar();
+                }}
+                className="text-white flex items-center gap-2 hover:bg-gray-700 transition duration-300 rounded-lg p-2"
+              >
+                {sedangMemuatKeluar ? <Memuat /> : "Keluar"}
               </MenuItem>
             </MenuList>
           </Menu>

@@ -7,7 +7,7 @@ import { db, storage } from "@/lib/firebaseConfig";
 export default function useTambahSayuran() {
   const [gambarSayuran, setGambarSayuran] = useState(null);
   const [nama, setNama] = useState("");
-  const [harga, setHarga] = useState(0);
+  const [harga, setHarga] = useState();
   const [berat, setBerat] = useState("");
   const [stok, setStok] = useState("");
   const [deskripsi, setDeskripsi] = useState("");

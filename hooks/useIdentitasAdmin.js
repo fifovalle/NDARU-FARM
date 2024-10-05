@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { setDoc, serverTimestamp, doc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { db } from "@/lib/firebaseConfig";
 import { toast } from "react-toastify";
@@ -12,12 +12,14 @@ export function useIdentitasAdmin() {
   const [nomorPonsel, setNomorPonsel] = useState("");
   const [sedangMemuatTambahAdmin, setSedangMemuatTambahAdmin] = useState(false);
   const [email, setEmail] = useState("");
+  const [uid, setUid] = useState("");
 
   useEffect(() => {
     const auth = getAuth();
     const user = auth.currentUser;
     if (user) {
       setEmail(user.email);
+      setUid(user.uid);
     }
   }, []);
 
@@ -38,16 +40,17 @@ export function useIdentitasAdmin() {
 
     try {
       setSedangMemuatTambahAdmin(true);
-      await addDoc(collection(db, "admin"), {
+
+      await setDoc(doc(db, "admin", uid), {
         Nama_Depan: namaDepan,
         Nama_Belakang: namaBelakang,
         Nomor_Ponsel: nomorPonsel,
-        Peran_Admin: "admin",
+        Peran_Admin: "Admin",
         Tanggal_Dibuat: serverTimestamp(),
         Email: email,
       });
-      toast.success("Data admin berhasil disimpan");
 
+      toast.success("Data admin berhasil disimpan");
       pengarah.push("/beranda");
 
       setNamaDepan("");

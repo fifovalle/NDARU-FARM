@@ -8,12 +8,19 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+// PENGAIT KAMI
+import useHapusSayuran from "@/hooks/useHapusSayuran";
+// KOMPONEN KAMI
+import Memuat from "@/components/memuat";
 
 const ModalKonfirmasiHapusSayuran = ({
   terbuka,
   tanganiTutup,
   sayuranYangTerpilih,
 }) => {
+  const { hapusSayuran, sedangMemuatHapusSayuran } =
+    useHapusSayuran(sayuranYangTerpilih);
+
   return (
     <Dialog
       open={terbuka}
@@ -47,8 +54,16 @@ const ModalKonfirmasiHapusSayuran = ({
       </DialogBody>
 
       <DialogFooter className="space-x-4">
-        <Button variant="gradient" color="red">
-          Hapus
+        <Button
+          variant="gradient"
+          color="red"
+          onClick={async () => {
+            await hapusSayuran(sayuranYangTerpilih);
+            tanganiTutup(false);
+          }}
+          disabled={sedangMemuatHapusSayuran}
+        >
+          {sedangMemuatHapusSayuran ? <Memuat /> : "Hapus"}
         </Button>
       </DialogFooter>
     </Dialog>

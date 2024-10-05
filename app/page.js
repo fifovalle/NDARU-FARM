@@ -8,17 +8,19 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // PENGAIT KAMI
 import { useMasukDenganGoogle } from "@/hooks/useMasukDenganGoogle";
+import useCekAkunTerdaftar from "@/hooks/useCekAkunTerdaftar";
 // KOMPONEN KAMI
 import Memuat from "@/components/memuat";
 export default function Index() {
-  const vektor1 = require("@/assets/image/vektor1.png");
   const pengarah = useRouter();
+  const vektor1 = require("@/assets/image/vektor1.png");
 
   const [namaPengguna, setNamaPengguna] = useState(false);
   const [kataSandi, setKataSandi] = useState(false);
   const [lihatKataSandi, setLihatKataSandi] = useState(false);
   const { masukDenganGoogle, sedangMemuatMasukDenganGoogle } =
     useMasukDenganGoogle();
+  useCekAkunTerdaftar(pengarah);
 
   return (
     <section className="flex justify-center items-center min-h-screen bg-[#0A0A0A] px-4 font-poppins">

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // KOMPONEN KAMI
@@ -10,13 +11,16 @@ import DaftarMenu from "@/app/dataSaranaPertanian/components/daftarMenu";
 import TabelSaranaPertanian from "@/app/dataSaranaPertanian/components/tabelSaranaPertanian";
 import GrafikSaranaPertanian from "@/app/dataSaranaPertanian/components/grafikSaranaPertanian";
 import FooterSemua from "@/components/footer";
-// HOOKS KAMI
+// PENGAIT KAMI
 import { useSidebar } from "@/hooks/useSidebar";
+import useCekAkunTerdaftar from "@/hooks/useCekAkunTerdaftar";
 
 export default function DataSaranaPertanian() {
+  const pengarah = useRouter();
   const gambar = require("@/assets/image/1.jpg");
   const { sidebarTerbuka, toggleSidebar, refSidebar } = useSidebar();
   const [daftarMenuAktif, setDaftarMenuAktif] = useState("saranaPertanian");
+  useCekAkunTerdaftar(pengarah);
 
   return (
     <section className="flex flex-col md:flex-row min-h-screen bg-[#0a0a0a] font-poppins">

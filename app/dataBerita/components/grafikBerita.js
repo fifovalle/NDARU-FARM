@@ -91,8 +91,8 @@ const GrafikBerita = () => {
             {dataGrafik.length > 0 ? (
               <Chart {...konfigurasiGrafikBerita(rentangWaktu, dataGrafik)} />
             ) : (
-              <Typography color="white" className="text-center">
-                Data tidak tersedia
+              <Typography color="red" className="text-center font-bold mb-5">
+                Data tidak tersedia!
               </Typography>
             )}
           </CardBody>

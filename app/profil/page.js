@@ -1,15 +1,19 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 // KOMPONEN KAMI
 import Navbar from "@/components/navbar";
 import FooterSemua from "@/components/footer";
 import Sidebar from "@/app/profil/components/sidebar";
-// HOOKS KAMI
+// PENGAIT KAMI
 import { useSidebar } from "@/hooks/useSidebar";
+import useCekAkunTerdaftar from "@/hooks/useCekAkunTerdaftar";
 
 export default function page() {
+  const pengarah = useRouter();
   const gambar = require("@/assets/image/1.jpg");
   const { sidebarTerbuka, toggleSidebar, refSidebar } = useSidebar();
+  useCekAkunTerdaftar(pengarah);
 
   return (
     <section className="flex flex-col md:flex-row min-h-screen bg-[#0a0a0a] font-poppins">
